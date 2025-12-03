@@ -36,5 +36,5 @@ export PATH=~/.local/share/mise/installs/bun:$PATH
 
 export PATH=~/.local/bin:$PATH
 
-# Added by Antigravity
+# antigravity
 export PATH="/Users/neo/.antigravity/antigravity/bin:$PATH"
