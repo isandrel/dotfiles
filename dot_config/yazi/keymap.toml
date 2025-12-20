@@ -1,0 +1,7 @@
+[[mgr.prepend_keymap]]
+on = "<D-y>"
+run = ["plugin system-clipboard"]
+
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = 'shell -- qlmanage -p "$@"'
