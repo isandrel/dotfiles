@@ -36,7 +36,7 @@
     "showErrors": false,
     "disableLinewrap": true,
     "hideCursor": false,
-    "separator": " > ",
+    "separator": " 󰅂 ",
     "color": {
       "keys": "",
       "title": "",
@@ -139,20 +139,24 @@
       "format": " System Information"
     },
     {
+      "type": "custom",
+      "format": "───────────────────"
+    },
+    {
       "type": "os",
-      "key": " OS"
+      "key": " ├─  Distro"
     },
     {
       "type": "host",
-      "key": "󰌢 Host"
+      "key": " ├─ 󰌢 Host"
     },
     {
       "type": "kernel",
-      "key": " Kernel"
+      "key": " ├─  Kernel"
     },
     {
       "type": "uptime",
-      "key": " Uptime"
+      "key": " └─  Uptime"
     },
     {
       "type": "packages",
@@ -161,10 +165,6 @@
         "winget"
       ],
       "combined": false
-    },
-    {
-      "type": "shell",
-      "key": " Shell"
     },
     {
       "type": "display",
@@ -178,30 +178,34 @@
       "format": " Desktop Environment"
     },
     {
+      "type": "custom",
+      "format": "───────────────────"
+    },
+    {
       "type": "de",
       "key": " DE",
       "slowVersionDetection": false
     },
     {
       "type": "wm",
-      "key": " WM",
+      "key": " ├─  WM",
       "detectPlugin": false
     },
     {
       "type": "wmtheme",
-      "key": "󰓸 WM Theme"
+      "key": " ├─ 󰓸 WM Theme"
     },
     {
       "type": "theme",
-      "key": "󰉼 Theme"
+      "key": " ├─ 󰉼 Theme"
     },
     {
       "type": "icons",
-      "key": " Icons"
+      "key": " ├─  Icons"
     },
     {
       "type": "font",
-      "key": " Font"
+      "key": " └─  Font"
     },
     {
       "type": "cursor",
@@ -212,8 +216,16 @@
       "format": " Terminal"
     },
     {
+      "type": "custom",
+      "format": "───────────────────"
+    },
+    {
+      "type": "shell",
+      "key": " ├─  Shell"
+    },
+    {
       "type": "terminal",
-      "key": " Term"
+      "key": " └─  Term"
     },
     {
       "type": "terminalfont",
@@ -224,14 +236,18 @@
       "format": " Hardware"
     },
     {
+      "type": "custom",
+      "format": "───────────────────"
+    },
+    {
       "type": "cpu",
-      "key": " CPU",
+      "key": " ├─  CPU",
       "temp": false,
       "showPeCoreCount": false
     },
     {
       "type": "gpu",
-      "key": "󰾲 GPU",
+      "key": " └─ 󰾲 GPU",
       "driverSpecific": false,
       "detectionMethod": "auto",
       "temp": false,
