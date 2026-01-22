@@ -1,0 +1,39 @@
+---
+user: 39 # Bright cyan-blue
+group: 141 # Bright purple/magenta
+permission:
+  read: 46 # Bright green
+  write: 226 # Bright yellow
+  exec: 196 # Bright red
+  exec-sticky: 201 # Bright magenta
+  no-access: 240 # Dark gray
+  octal: 51 # Bright cyan
+  acl: 87 # Cyan
+  context: 123 # Light cyan
+date:
+  hour-old: 46 # Bright green (very recent)
+  day-old: 226 # Bright yellow (recent)
+  older: 208 # Orange (older)
+size:
+  none: 240 # Dark gray (empty)
+  small: 82 # Light green (small files)
+  medium: 75 # Light blue (medium files)
+  large: 201 # Bright magenta (large files)
+inode:
+  valid: 141 # Bright purple
+  invalid: 240 # Dark gray
+links:
+  valid: 51 # Bright cyan
+  invalid: 240 # Dark gray
+tree-edge: 75 # Light blue
+git-status:
+  default: 250 # Light gray
+  unmodified: 250 # Light gray
+  ignored: 240 # Dark gray
+  new-in-index: 46 # Bright green (staged new)
+  new-in-workdir: 82 # Light green (unstaged new)
+  typechange: 214 # Orange
+  deleted: 196 # Bright red
+  renamed: 51 # Bright cyan
+  modified: 226 # Bright yellow
+  conflicted: 202 # Orange-red
