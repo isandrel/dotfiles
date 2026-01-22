@@ -36,7 +36,7 @@
     "showErrors": false,
     "disableLinewrap": true,
     "hideCursor": false,
-    "separator": ": ",
+    "separator": " > ",
     "color": {
       "keys": "",
       "title": "",
@@ -135,24 +135,28 @@
       "times": 0
     },
     {
+      "type": "custom",
+      "format": " System Information"
+    },
+    {
       "type": "os",
-      "keyIcon": ""
+      "key": " OS"
     },
     {
       "type": "host",
-      "keyIcon": "󰌢"
+      "key": "󰌢 Host"
     },
     {
       "type": "kernel",
-      "keyIcon": ""
+      "key": " Kernel"
     },
     {
       "type": "uptime",
-      "keyIcon": ""
+      "key": " Uptime"
     },
     {
       "type": "packages",
-      "keyIcon": "󰏖",
+      "key": "󰏖 Packages",
       "disabled": [
         "winget"
       ],
@@ -160,62 +164,74 @@
     },
     {
       "type": "shell",
-      "keyIcon": ""
+      "key": " Shell"
     },
     {
       "type": "display",
-      "keyIcon": "󰍹",
+      "key": "󰍹 Display",
       "compactType": "none",
       "preciseRefreshRate": false,
       "order": null
     },
     {
+      "type": "custom",
+      "format": " Desktop Environment"
+    },
+    {
       "type": "de",
-      "keyIcon": "",
+      "key": " DE",
       "slowVersionDetection": false
     },
     {
       "type": "wm",
-      "keyIcon": "",
+      "key": " WM",
       "detectPlugin": false
     },
     {
       "type": "wmtheme",
-      "keyIcon": "󰓸"
+      "key": "󰓸 WM Theme"
     },
     {
       "type": "theme",
-      "keyIcon": "󰉼"
+      "key": "󰉼 Theme"
     },
     {
       "type": "icons",
-      "keyIcon": ""
+      "key": " Icons"
     },
     {
       "type": "font",
-      "keyIcon": ""
+      "key": " Font"
     },
     {
       "type": "cursor",
-      "keyIcon": "󰆿"
+      "key": "󰆿 Cursor"
+    },
+    {
+      "type": "custom",
+      "format": " Terminal"
     },
     {
       "type": "terminal",
-      "keyIcon": ""
+      "key": " Term"
     },
     {
       "type": "terminalfont",
-      "keyIcon": ""
+      "key": " Term Font"
+    },
+    {
+      "type": "custom",
+      "format": " Hardware"
     },
     {
       "type": "cpu",
-      "keyIcon": "",
+      "key": " CPU",
       "temp": false,
       "showPeCoreCount": false
     },
     {
       "type": "gpu",
-      "keyIcon": "󰾲",
+      "key": "󰾲 GPU",
       "driverSpecific": false,
       "detectionMethod": "auto",
       "temp": false,
@@ -228,7 +244,7 @@
     },
     {
       "type": "memory",
-      "keyIcon": "",
+      "key": " Memory",
       "percent": {
         "green": 50,
         "yellow": 80,
@@ -237,17 +253,17 @@
     },
     {
       "type": "swap",
+      "key": "󰓡 Swap",
       "percent": {
         "green": 50,
         "yellow": 80,
         "type": 0
       },
-      "keyIcon": "󰓡",
       "separate": false
     },
     {
       "type": "disk",
-      "keyIcon": "",
+      "key": " Disk",
       "showRegular": true,
       "showExternal": true,
       "showHidden": false,
@@ -266,7 +282,7 @@
     },
     {
       "type": "localip",
-      "keyIcon": "󰩟",
+      "key": "󰩟 Local IP",
       "showIpv4": true,
       "showIpv6": false,
       "showMac": false,
@@ -282,7 +298,7 @@
     },
     {
       "type": "battery",
-      "keyIcon": "",
+      "key": " Battery",
       "temp": false,
       "percent": {
         "green": 50,
@@ -292,11 +308,11 @@
     },
     {
       "type": "poweradapter",
-      "keyIcon": "󰚥"
+      "key": "󰚥 Power Adapter"
     },
     {
       "type": "locale",
-      "keyIcon": ""
+      "key": " Locale"
     },
     "break",
     {
