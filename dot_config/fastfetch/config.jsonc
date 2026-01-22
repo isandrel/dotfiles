@@ -36,7 +36,7 @@
     "showErrors": false,
     "disableLinewrap": true,
     "hideCursor": false,
-    "separator": " 󰅂 ",
+    "separator": " > ",
     "color": {
       "keys": "",
       "title": "",
@@ -139,24 +139,20 @@
       "format": " System Information"
     },
     {
-      "type": "custom",
-      "format": "───────────────────"
-    },
-    {
       "type": "os",
-      "key": " ├─  Distro"
+      "key": "󰎅 OS"
     },
     {
       "type": "host",
-      "key": " ├─ 󰌢 Host"
+      "key": "󰌢 Host"
     },
     {
       "type": "kernel",
-      "key": " ├─  Kernel"
+      "key": "󰄓 Kernel"
     },
     {
       "type": "uptime",
-      "key": " └─  Uptime"
+      "key": "󰖽 Uptime"
     },
     {
       "type": "packages",
@@ -165,6 +161,10 @@
         "winget"
       ],
       "combined": false
+    },
+    {
+      "type": "shell",
+      "key": "󰖼 Shell"
     },
     {
       "type": "display",
@@ -178,34 +178,30 @@
       "format": " Desktop Environment"
     },
     {
-      "type": "custom",
-      "format": "───────────────────"
-    },
-    {
       "type": "de",
-      "key": " DE",
+      "key": " DE",
       "slowVersionDetection": false
     },
     {
       "type": "wm",
-      "key": " ├─  WM",
+      "key": "󰆀 WM",
       "detectPlugin": false
     },
     {
       "type": "wmtheme",
-      "key": " ├─ 󰓸 WM Theme"
+      "key": "󰓸 WM Theme"
     },
     {
       "type": "theme",
-      "key": " ├─ 󰉼 Theme"
+      "key": "󰉼 Theme"
     },
     {
       "type": "icons",
-      "key": " ├─  Icons"
+      "key": " Icons"
     },
     {
       "type": "font",
-      "key": " └─  Font"
+      "key": "󰓅 Font"
     },
     {
       "type": "cursor",
@@ -216,16 +212,12 @@
       "format": " Terminal"
     },
     {
-      "type": "custom",
-      "format": "───────────────────"
-    },
-    {
       "type": "shell",
-      "key": " ├─  Shell"
+      "key": "󰖼 Shell"
     },
     {
       "type": "terminal",
-      "key": " └─  Term"
+      "key": "󰆞 Term"
     },
     {
       "type": "terminalfont",
@@ -236,18 +228,14 @@
       "format": " Hardware"
     },
     {
-      "type": "custom",
-      "format": "───────────────────"
-    },
-    {
       "type": "cpu",
-      "key": " ├─  CPU",
+      "key": "󰭣 CPU",
       "temp": false,
       "showPeCoreCount": false
     },
     {
       "type": "gpu",
-      "key": " └─ 󰾲 GPU",
+      "key": "󰾲 GPU",
       "driverSpecific": false,
       "detectionMethod": "auto",
       "temp": false,
@@ -260,7 +248,7 @@
     },
     {
       "type": "memory",
-      "key": " Memory",
+      "key": "󰮄 Memory",
       "percent": {
         "green": 50,
         "yellow": 80,
@@ -279,7 +267,7 @@
     },
     {
       "type": "disk",
-      "key": " Disk",
+      "key": "󰋉 Disk",
       "showRegular": true,
       "showExternal": true,
       "showHidden": false,
@@ -314,7 +302,7 @@
     },
     {
       "type": "battery",
-      "key": " Battery",
+      "key": "󰖋 Battery",
       "temp": false,
       "percent": {
         "green": 50,
@@ -328,7 +316,7 @@
     },
     {
       "type": "locale",
-      "key": " Locale"
+      "key": "󰌌 Locale"
     },
     "break",
     {
