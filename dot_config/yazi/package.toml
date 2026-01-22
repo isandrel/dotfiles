@@ -4,8 +4,9 @@ rev  = "de33976"
 use  = "yazi-rs/plugins:smart-enter"
 
 [[plugin.deps]]
-rev = "de33976"
-use = "yazi-rs/plugins:smart-paste"
+hash = "75fd60b2df7115e0a6ca31a6a804d320"
+rev  = "de33976"
+use  = "yazi-rs/plugins:smart-paste"
 
 [[plugin.deps]]
 hash = "3996fc74044bc44144b323686f887e1"
