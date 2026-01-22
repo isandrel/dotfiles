@@ -85,8 +85,21 @@ image_bound = [0, 0]
 suppress_preload = false
 
 [plugin]
+prepend_preloaders = [
+    { mime = "video/*", run = "mediainfo" },
+    { mime = "image/*", run = "mediainfo" },
+]
 prepend_previewers = [
-    { mime = "text/csv",                    run = "miller" },
+    # Video and image with metadata
+    { mime = "video/*",                     run = "mediainfo" },
+    { mime = "image/*",                     run = "mediainfo" },
+
+    # Audio metadata and covers
+    { mime = "audio/*",                     run = "exifaudio" },
+
+    # Markdown and CSV with piper
+    { name = "*.md",                        run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+    { mime = "text/csv",                    run = "mux miller code" },
 
     # Archive previewer
     { name = "application/*zip",            run = "ouch" },

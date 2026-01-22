@@ -5,3 +5,13 @@ run = ["plugin system-clipboard"]
 [[mgr.prepend_keymap]]
 on = "<C-p>"
 run = 'shell -- qlmanage -p "$@"'
+
+[[mgr.prepend_keymap]]
+on = "p"
+run = "plugin mux --args=next"
+desc = "Cycle through previewers"
+
+[[mgr.prepend_keymap]]
+on = "<F9>"
+run = "plugin mediainfo --args=toggle-metadata"
+desc = "Toggle media metadata"
