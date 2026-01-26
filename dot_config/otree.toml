@@ -1,0 +1,109 @@
+[tree]
+disable_selected_highlight = false
+selected_symbol            = ""
+
+[editor]
+args    = ["{file}"]
+dir     = "/tmp"
+program = "vim"
+
+[layout]
+direction = "horizontal"
+tree_size = 40
+
+[header]
+disable = false
+format  = "{version} - {data_source} ({content_type}) - {data_size}"
+
+[footer]
+disable = false
+
+[data]
+disable_highlight = false
+max_data_size     = 30
+
+[filter]
+disable      = false
+exclude_mode = false
+ignore_case  = false
+
+[keys]
+change_layout             = ["v"]
+change_root               = ["r"]
+close_parent              = ["<backspace>"]
+copy_name                 = ["y"]
+copy_value                = ["Y"]
+edit                      = ["e"]
+expand_all                = ["X"]
+expand_children           = ["x"]
+filter                    = ["/"]
+filter_key                = ["?"]
+filter_next_match         = ["n"]
+filter_prev_match         = ["N"]
+filter_switch_ignore_case = ["I"]
+filter_value              = ["*"]
+move_down                 = ["<down>", "j"]
+move_left                 = ["<left>", "h"]
+move_right                = ["<right>", "l"]
+move_up                   = ["<up>", "k"]
+page_down                 = ["<ctrl-e>", "<page-down>"]
+page_up                   = ["<ctrl-y>", "<page-up>"]
+quit                      = ["<ctrl-c>", "q"]
+reset                     = ["<esc>"]
+select_first              = ["g"]
+select_focus              = ["<enter>"]
+select_last               = ["G"]
+select_parent             = ["p"]
+show_help                 = ["H"]
+switch                    = ["<tab>"]
+tree_scale_down           = ["]"]
+tree_scale_up             = ["["]
+
+[colors]
+focus_border = { fg = "magenta", bold = true }
+header       = { bold = true }
+
+[colors.tree]
+border         = { fg = "blue" }
+filter_keyword = { fg = "black", bg = "yellow" }
+name           = {}
+selected       = { fg = "black", bg = "light-green" }
+type_arr       = { fg = "cyan", bold = true, italic = true }
+type_bool      = { fg = "cyan", bold = true, italic = true }
+type_null      = { fg = "cyan", bold = true, italic = true }
+type_num       = { fg = "cyan", bold = true, italic = true }
+type_obj       = { fg = "cyan", bold = true, italic = true }
+type_str       = { fg = "cyan", bold = true, italic = true }
+value          = { fg = "dark-gray" }
+
+[colors.data]
+bool    = { fg = "red", bold = true, italic = true }
+border  = { fg = "blue" }
+name    = { fg = "yellow", italic = true }
+null    = { fg = "blue", italic = true }
+num     = { fg = "red" }
+section = { fg = "cyan", bold = true }
+str     = { fg = "green" }
+symbol  = {}
+text    = {}
+
+[colors.footer]
+identify = { fg = "black", bg = "light-green", bold = true }
+message  = { fg = "green", bold = true }
+root     = { fg = "black", bg = "light-cyan", bold = true }
+
+[colors.popup]
+error_text = { fg = "red" }
+help_name  = { fg = "yellow" }
+help_value = { fg = "green", bold = true }
+
+[colors.filter]
+border = { fg = "blue" }
+
+[types]
+arr  = "arr"
+bool = "bool"
+null = "null"
+num  = "num"
+obj  = "obj"
+str  = "str"
