@@ -1,22 +1,22 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "de33976"
+rev = "230b9c6"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-paste"
-rev = "de33976"
+rev = "230b9c6"
 hash = "75fd60b2df7115e0a6ca31a6a804d320"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "de33976"
+rev = "230b9c6"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "de33976"
-hash = "36a484acf6a0a0219c543ccb4cee218f"
+rev = "230b9c6"
+hash = "270915fa8282a19908449530ff66f7e2"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
@@ -30,8 +30,8 @@ hash = "68603fdd1dcaf415227e2c77a9317947"
 
 [[plugin.deps]]
 use = "orhnk/system-clipboard"
-rev = "888026c"
-hash = "9f82a544335a53d79e87ea315746caaa"
+rev = "75a5330"
+hash = "2eca70f99d25c661e0a92000843d001e"
 
 [[plugin.deps]]
 use = "ndtoan96/ouch"
@@ -40,8 +40,8 @@ hash = "c9e628fc0312d198db22ae2fa74883b"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "de33976"
-hash = "76ea4ff62db6ebe62e4653c2de95cbd"
+rev = "230b9c6"
+hash = "25aee698dd1081001008ce0cb1cc4da3"
 
 [[plugin.deps]]
 use = "Sonico98/exifaudio"
@@ -55,8 +55,8 @@ hash = "8e49c6f9b24993239c4d03a1aaabce80"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "7cd6b04"
-hash = "98b8276aa076284f5c4a5260cbe08549"
+rev = "dc61636"
+hash = "2fa34959353b6f1a1c33659f50e098fd"
 
 [flavor]
 deps = []
