@@ -9,6 +9,7 @@ tap "lihaoyun6/tap"
 tap "lzt1008/powerflow"
 tap "otuerk/sidebar"
 tap "oven-sh/bun"
+tap "roblibob/minute"
 tap "tw93/tap"
 tap "unsecretised/tap"
 tap "yakitrak/yakitrak"
@@ -251,6 +252,8 @@ cask "logi-options+"
 cask "lulu"
 # Clipboard manager
 cask "maccy"
+# Local-first meeting recorder with transcription and summaries
+cask "roblibob/minute/minute"
 # Open-source software for live streaming and screen recording
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
