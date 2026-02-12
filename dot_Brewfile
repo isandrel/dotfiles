@@ -268,8 +268,6 @@ cask "lzt1008/powerflow/powerflow"
 cask "prefs-editor"
 # Archive manager for data compression and backups
 cask "rar"
-# Utility tooling for your system
-cask "unsecretised/tap/rustcast"
 # Open source virtual/remote desktop application
 cask "rustdesk"
 # Sidebar - The most customizable Dock replacement for macOS
