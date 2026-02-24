@@ -56,6 +56,11 @@ local keys = {
    { key = 'UpArrow',    mods = 'SHIFT',       action = act.ScrollToPrompt(-1) },
    { key = 'DownArrow',  mods = 'SHIFT',       action = act.ScrollToPrompt(1) },
 
+   -- word jumping (Option+Arrow) --
+   { key = 'LeftArrow',  mods = 'OPT',         action = act.SendKey { key = 'b', mods = 'ALT' } },
+   { key = 'RightArrow', mods = 'OPT',         action = act.SendKey { key = 'f', mods = 'ALT' } },
+   { key = 'Backspace',  mods = 'OPT',         action = act.SendKey { key = 'Backspace', mods = 'ALT' } },
+
    -- copy/paste --
    -- { key = 'c',          mods = 'CTRL|SHIFT',  action = act.CopyTo('Clipboard') },
    -- { key = 'v',          mods = 'CTRL|SHIFT',  action = act.PasteFrom('Clipboard') },
