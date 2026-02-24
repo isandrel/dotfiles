@@ -1,3 +1,5 @@
+local settings = require('settings')
+
 return {
    -- ref: https://wezfurlong.org/wezterm/config/lua/SshDomain.html
    -- ssh_domains = {},
@@ -7,8 +9,7 @@ return {
          name = 'wsl.ssh',
          remote_address = 'localhost',
          multiplexing = 'None',
-         -- default_prog = { 'fish', '-l' },
-         default_prog = { 'zsh', '-l' },
+         default_prog = settings.default_shell or { 'zsh', '-l' },
          assume_shell = 'Posix'
       }
    },
@@ -19,12 +20,11 @@ return {
    -- ref: https://wezfurlong.org/wezterm/config/lua/WslDomain.html
    wsl_domains = {
       {
-         name = 'WSL:Ubuntu',
-         distribution = 'Ubuntu',
-         username = 'kevin',
-         default_cwd = '/home/kevin',
-         -- default_prog = { 'fish', '-l' },
-         default_prog = { 'zsh', '-l' },
+         name = 'WSL:' .. settings.wsl_distro,
+         distribution = settings.wsl_distro,
+         username = settings.wsl_user,
+         default_cwd = '/home/' .. settings.wsl_user,
+         default_prog = settings.default_shell or { 'zsh', '-l' },
       },
    },
 }

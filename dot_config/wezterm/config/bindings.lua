@@ -1,6 +1,7 @@
 local wezterm = require('wezterm')
 local platform = require('utils.platform')
 local backdrops = require('utils.backdrops')
+local settings = require('settings')
 local act = wezterm.action
 
 local mod = {}
@@ -64,7 +65,7 @@ local keys = {
    -- tabs --
    -- tabs: spawn+close
    { key = 't',          mods = mod.SUPER,     action = act.SpawnTab('DefaultDomain') },
-   { key = 't',          mods = mod.SUPER_REV, action = act.SpawnTab({ DomainName = 'WSL:Ubuntu' }) },
+   { key = 't',          mods = mod.SUPER_REV, action = act.SpawnTab({ DomainName = 'WSL:' .. settings.wsl_distro }) },
    { key = 'w',          mods = mod.SUPER_REV, action = act.CloseCurrentTab({ confirm = false }) },
 
    -- tabs: navigation
@@ -201,7 +202,7 @@ local keys = {
       action = act.ActivateKeyTable({
          name = 'resize_font',
          one_shot = false,
-         timemout_miliseconds = 1000,
+         timeout_milliseconds = 1000,
       }),
    },
    -- resize panes
@@ -211,7 +212,7 @@ local keys = {
       action = act.ActivateKeyTable({
          name = 'resize_pane',
          one_shot = false,
-         timemout_miliseconds = 1000,
+         timeout_milliseconds = 1000,
       }),
    },
 }
@@ -247,7 +248,6 @@ local mouse_bindings = {
 return {
    disable_default_key_bindings = true,
    -- disable_default_mouse_bindings = true,
-   enable_shell_integration = true,
    leader = { key = 'Space', mods = mod.SUPER_REV },
    keys = keys,
    key_tables = key_tables,

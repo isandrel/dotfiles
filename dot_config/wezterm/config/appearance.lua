@@ -1,9 +1,10 @@
 local gpu_adapters = require('utils.gpu-adapter')
 local backdrops = require('utils.backdrops')
 local colors = require('colors.custom')
+local settings = require('settings')
 
 return {
-   max_fps = 120,
+   max_fps = settings.max_fps,
    front_end = 'WebGpu',
    webgpu_power_preference = 'HighPerformance',
    webgpu_preferred_adapter = gpu_adapters:pick_best(),
@@ -12,7 +13,7 @@ return {
    underline_thickness = '1.5pt',
 
    -- cursor
-   animation_fps = 120,
+   animation_fps = settings.animation_fps,
    cursor_blink_ease_in = 'EaseOut',
    cursor_blink_ease_out = 'EaseOut',
    default_cursor_style = 'BlinkingBlock',
