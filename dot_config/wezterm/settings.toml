@@ -1,0 +1,43 @@
+# ============================================================
+# WezTerm Settings
+# ============================================================
+# Edit this file to customize your WezTerm setup.
+# All platform-specific defaults are handled automatically;
+# override only what you need.
+# ============================================================
+
+[fonts]
+family = "LiterationMono Nerd Font"
+weight = "Medium"
+# size is auto-detected per platform (12 on mac, 9 on others)
+# Uncomment to override:
+# size = 12
+
+[appearance]
+max_fps = 120
+animation_fps = 60  # cursor blink; 60 is sufficient
+background_opacity = 0.96
+
+[general]
+scrollback_lines = 20000
+date_format = "%a %H:%M:%S"
+
+[shell]
+# Override the default shell. Leave commented to use platform defaults.
+# Examples: ["zsh", "-l"], ["/opt/homebrew/bin/fish", "-l"], ["pwsh", "-NoLogo"]
+# default = ["zsh", "-l"]
+
+[wsl]
+# Only relevant on Windows; ignored on macOS/Linux.
+user = "kevin"
+distro = "Ubuntu"
+
+[windows]
+# Only relevant on Windows; ignored on macOS/Linux.
+user = "kevin"
+
+[backdrops]
+# Set to a custom directory, or leave commented for default (./backdrops/)
+# images_dir = "/Users/neo/Pictures/Wallpapers/"
+# Solid color for focus mode; leave commented for theme background
+# focus_color = "#000000"
