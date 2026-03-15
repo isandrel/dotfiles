@@ -58,5 +58,10 @@ use = "boydaihungst/mediainfo"
 rev = "6fbed8d"
 hash = "57ae6b43c477e117802f176683b78e74"
 
+[[plugin.deps]]
+use = "cap153/tv"
+rev = "b6b1f12"
+hash = "4bdf0523d3711d20982ad80b061dedf2"
+
 [flavor]
 deps = []
