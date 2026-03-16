@@ -10,33 +10,39 @@ return {
    scrollback_lines = settings.scrollback_lines,
 
    hyperlink_rules = {
+      -- Matches: a Markdown link: [label](URL)
+      {
+         regex = '\\[[^\\]]+\\]\\((\\w+://[^)\\s]+)\\)',
+         format = '$1',
+         highlight = 0,
+      },
       -- Matches: a URL in parens: (URL)
       {
-         regex = '\\((\\w+://\\S+)\\)',
+         regex = '\\((\\w+://[^)\\s]+)\\)',
          format = '$1',
          highlight = 1,
       },
       -- Matches: a URL in brackets: [URL]
       {
-         regex = '\\[(\\w+://\\S+)\\]',
+         regex = '\\[(\\w+://[^\\]\\s]+)\\]',
          format = '$1',
          highlight = 1,
       },
       -- Matches: a URL in curly braces: {URL}
       {
-         regex = '\\{(\\w+://\\S+)\\}',
+         regex = '\\{(\\w+://[^}\\s]+)\\}',
          format = '$1',
          highlight = 1,
       },
       -- Matches: a URL in angle brackets: <URL>
       {
-         regex = '<(\\w+://\\S+)>',
+         regex = '<(\\w+://[^>\\s]+)>',
          format = '$1',
          highlight = 1,
       },
       -- Then handle URLs not wrapped in brackets
       {
-         regex = '\\b\\w+://\\S+[)/a-zA-Z0-9-]+',
+         regex = '\\b\\w+://(?:[^\\s<>()\\[\\]{}]+|\\([^\\s<>()\\[\\]{}]*\\))+',
          format = '$0',
       },
       -- implicit mailto link
