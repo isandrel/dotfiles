@@ -20,8 +20,8 @@ hash = "26db011a778f261d730d4f5f8bf24b3f"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
-rev = "eca1861"
-hash = "e519d894e94ded741e06aae4d4775981"
+rev = "a837101"
+hash = "635b0feb9215772d22020eb0abf0bb34"
 
 [[plugin.deps]]
 use = "Ape/simple-status"
@@ -55,8 +55,8 @@ hash = "8e49c6f9b24993239c4d03a1aaabce80"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
-rev = "6fbed8d"
-hash = "57ae6b43c477e117802f176683b78e74"
+rev = "a7febc0"
+hash = "5093ac06d5a80b5fe4f1d5f6db86fd30"
 
 [[plugin.deps]]
 use = "cap153/tv"
