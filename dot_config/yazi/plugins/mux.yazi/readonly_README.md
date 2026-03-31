@@ -6,6 +6,10 @@ Credits to [@sxyazi](https://github.com/sxyazi) for the idea (see [issue comment
 
 [![asciicast](https://asciinema.org/a/746031.svg)](https://asciinema.org/a/746031)
 
+> NOTE: This only works with async plugins so far because this plugin itself is an async plugin. It's not possible to cross this boundary (yet). [See this issue](https://github.com/peterfication/mux.yazi/issues/25).
+>
+> This means it's not possible to use the `folder` previewer with `mux`. Use [piper](https://github.com/yazi-rs/plugins/tree/main/piper.yazi) with `ls` or `eza` for this instead.
+
 ## Installation
 
 ```bash
@@ -63,6 +67,7 @@ Explanations:
 
 - `cd` before `eza` makes sure that the root does not contain the full path
 - `LS_COLORS` paints executables green, like yazi
+- Or use an [eza theme](https://github.com/eza-community/eza-themes) that aligns with your [yazi flavor](https://github.com/yazi-rs/flavors).
 
 ```lua
 -- init.lua

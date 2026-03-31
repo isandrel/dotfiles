@@ -50,8 +50,8 @@ hash = "4761fffb60a12d37096c34a356380cdf"
 
 [[plugin.deps]]
 use = "peterfication/mux"
-rev = "e76edd5"
-hash = "8e49c6f9b24993239c4d03a1aaabce80"
+rev = "7f4f101"
+hash = "b1f73cd4b5f6d42351a025ad65075a43"
 
 [[plugin.deps]]
 use = "boydaihungst/mediainfo"
@@ -63,5 +63,37 @@ use = "cap153/tv"
 rev = "b6b1f12"
 hash = "4bdf0523d3711d20982ad80b061dedf2"
 
-[flavor]
-deps = []
+[[plugin.deps]]
+use = "larry-oates/open-git-remote"
+rev = "491070e"
+hash = "4b6301b88d46ce0d7c86666dabafd397"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "8c4086c"
+hash = "85316b5e9abeae2531d3e5d02a094381"
+
+[[plugin.deps]]
+use = "ktunprasert/git-files"
+rev = "529444e"
+hash = "a028c3c06630a33b068f4d5bd714a795"
+
+[[plugin.deps]]
+use = "Shallow-Seek/modif"
+rev = "2c96c3a"
+hash = "a9096eeeb9c69d6c325e979afb838a5f"
+
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
+[[plugin.deps]]
+use = "hankertrix/augment-command"
+rev = "681158d"
+hash = "63ed5325016895306781d13690b246bf"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "9511cb0"
+hash = "7dfe41c9c3d9be76da8a844263d0bbed"

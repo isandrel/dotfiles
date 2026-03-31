@@ -1,6 +1,6 @@
 [[mgr.prepend_keymap]]
 on  = "<D-y>"
-run = ["plugin system-clipboard"]
+run = [ "plugin system-clipboard" ]
 
 [[mgr.prepend_keymap]]
 on   = "<C-t>"
@@ -34,3 +34,48 @@ run  = "plugin mediainfo --args=toggle-metadata"
 [[mgr.prepend_keymap]]
 on  = "<C-n>"
 run = 'shell -- ripdrag -x -i "$@"'
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "l" ]
+run  = "plugin open-git-remote"
+desc = "Open git remote URL"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "i" ]
+run  = "plugin lazygit"
+desc = "Run lazygit"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "c" ]
+run  = "plugin git-files"
+desc = "Show Git file changes"
+
+[[mgr.prepend_keymap]]
+on   = [ "b", "m" ]
+run  = "plugin modif 5d"
+desc = "Show recently modified files"
+
+[[mgr.prepend_keymap]]
+on   = "H"
+run  = "plugin duckdb -1"
+desc = "Scroll one column left in DuckDB preview"
+
+[[mgr.prepend_keymap]]
+on   = "L"
+run  = "plugin duckdb 1"
+desc = "Scroll one column right in DuckDB preview"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "o" ]
+run  = "plugin duckdb -open"
+desc = "Open current file in DuckDB CLI"
+
+[[mgr.prepend_keymap]]
+on   = "<A-h>"
+run  = "plugin augment-command -- parent_arrow -1 --no-wrap"
+desc = "Move up in parent directory"
+
+[[mgr.prepend_keymap]]
+on   = "<A-l>"
+run  = "plugin augment-command -- parent_arrow 1 --no-wrap"
+desc = "Move down in parent directory"

@@ -17,6 +17,9 @@ require("starship"):setup({
     config_file = "~/.config/starship.toml", -- Default: nil
 })
 
+require("augment-command"):setup()
+require("duckdb"):setup({ mode = "summarized" })
+
 function Linemode:size_and_mtime()
     local year = os.date("%Y")
     local time = (self._file.cha.mtime or 0) // 1
