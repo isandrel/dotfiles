@@ -10,12 +10,12 @@
 family = "LiterationMono Nerd Font"
 weight = "Medium"
 # size is auto-detected per platform (12 on mac, 9 on others)
-# Uncomment to override:
-# size = 12
+size = 12.5
 
 [appearance]
 max_fps = 120
 animation_fps = 60  # cursor blink; 60 is sufficient
+color_scheme = "Catppuccin Mocha"
 background_opacity = 0.96
 
 [general]

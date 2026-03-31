@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ya pkg:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh api:*)"
+    ]
+  }
+}

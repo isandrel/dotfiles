@@ -1,6 +1,5 @@
 local gpu_adapters = require('utils.gpu-adapter')
 local backdrops = require('utils.backdrops')
-local colors = require('colors.custom')
 local settings = require('settings')
 
 return {
@@ -20,7 +19,7 @@ return {
    cursor_blink_rate = 650,
 
    -- color scheme
-   colors = colors,
+   color_scheme = settings.color_scheme,
 
    -- background
    background = backdrops:initial_options(false), -- set to true if you want wezterm to start on focus mode

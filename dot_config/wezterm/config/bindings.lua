@@ -127,6 +127,21 @@ local keys = {
          window:set_inner_size(new_width, new_height)
       end)
    },
+   {
+      key = '-',
+      mods = 'SUPER|SHIFT',
+      action = act.DecreaseFontSize,
+   },
+   {
+      key = '=',
+      mods = 'SUPER|SHIFT',
+      action = act.IncreaseFontSize,
+   },
+   {
+      key = '0',
+      mods = mod.SUPER,
+      action = act.ResetFontSize,
+   },
 
    -- background controls --
    {

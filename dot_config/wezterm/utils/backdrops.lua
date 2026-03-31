@@ -1,5 +1,6 @@
 local wezterm = require('wezterm')
 local colors = require('colors.custom')
+local settings = require('settings')
 
 -- Seeding random numbers before generating for use
 -- Known issue with lua math library
@@ -85,7 +86,7 @@ function BackDrops:_create_opts()
          width = '120%',
          vertical_offset = '-10%',
          horizontal_offset = '-10%',
-         opacity = 0.96,
+         opacity = settings.background_opacity,
       },
    }
 end

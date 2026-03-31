@@ -33,6 +33,7 @@ settings.font_size = get('fonts', 'size') or (platform.is_mac and 12 or 9)
 -- ── Appearance ───────────────────────────────────────────────
 settings.max_fps = get('appearance', 'max_fps') or 120
 settings.animation_fps = get('appearance', 'animation_fps') or 60
+settings.color_scheme = get('appearance', 'color_scheme')
 settings.background_opacity = get('appearance', 'background_opacity') or 0.96
 
 -- ── General ──────────────────────────────────────────────────
