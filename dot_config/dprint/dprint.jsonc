@@ -1,14 +1,32 @@
 {
+  "indentWidth": 4,
+  "lineWidth": 120,
+  "newLineKind": "lf",
+  "useTabs": false,
+  "markdown": {
+    "textWrap": "never",
+    "unorderedListKind": "dashes",
+    "emphasisKind": "underscores",
+    "strongKind": "asterisks",
+    "headingKind": "atx"
+  },
+  "yaml": {
+    "indentWidth": 4,
+    "indent_block_sequence_in_map": true,
+    "quotes": "prefer-double",
+    "prose_wrap": "never",
+    "sequence.format": "block"
+  },
   "typescript": {},
-  "json": {},
-  "markdown": {},
-  "toml": {},
+  "json": {
+    "indentWidth": 2
+  },
   "malva": {},
   "markup": {},
-  "yaml": {},
   "excludes": [
     "**/node_modules",
-    "**/*-lock.json"
+    "**/*-lock.json",
+    "**/*.toml"
   ],
   "plugins": [
     "https://plugins.dprint.dev/typescript-0.95.15.wasm",
