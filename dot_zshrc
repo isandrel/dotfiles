@@ -4,13 +4,24 @@
 # All configuration is split into ~/.config/zsh/*.zsh files
 #
 
-# Source all config files in order
-setopt NULL_GLOB
-for config in ~/.config/zsh/*.zsh; do
+# Source config files in explicit order
+# env.zsh + path.zsh now load from .zshenv (available in ALL shell types)
+# Remaining files are interactive-only (aliases, plugins, keybindings)
+config_files=(
+    options.zsh
+    aliases.zsh
+    keybindings.zsh
+    plugins.zsh
+)
+
+for config_file in $config_files; do
+    config="$HOME/.config/zsh/$config_file"
     [[ -f "$config" ]] && source "$config"
 done
-setopt NO_NULL_GLOB
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/neo/.lmstudio/bin"
-# End of LM Studio CLI section
+for plugin_config in "$HOME"/.config/zsh/plugins/*.zsh(.N); do
+    source "$plugin_config"
+done
+
+# Taplo TOML formatter — global config
+export TAPLO_CONFIG="$HOME/.config/taplo/config.toml"
