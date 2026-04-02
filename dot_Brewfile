@@ -1,17 +1,26 @@
+tap "athevon/tokeneater"
 tap "bgreenwell/xleak"
 tap "buo/cask-upgrade"
+tap "cola-runner/tap"
 tap "felixkratz/formulae"
+tap "garfieldfluffjr/macnewfile"
 tap "homebrew/cask"
 tap "iordv/tap"
 tap "joknarf/tools"
+tap "jundot/omlx", "https://github.com/jundot/omlx"
 tap "kde/kde"
+tap "lbjlaq/antigravity-manager", "https://github.com/lbjlaq/Antigravity-Manager"
 tap "lihaoyun6/tap"
 tap "lzt1008/powerflow"
+tap "nguyenphutrong/tap"
 tap "otuerk/sidebar"
 tap "oven-sh/bun"
+tap "rana-gmbh/netfluss"
 tap "roblibob/minute"
+tap "touch-tap/tap"
 tap "tw93/tap"
 tap "unsecretised/tap"
+tap "wyattjoh/stable"
 tap "yakitrak/yakitrak"
 # Asciicast to GIF converter
 brew "agg"
@@ -19,18 +28,16 @@ brew "agg"
 brew "asciinema"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
-# Lightweight and flexible command-line JSON processor
-brew "jq"
 # Organization lookup and server tool (ASN / IPv4 / IPv6 / Prefix / AS Path)
 brew "asn"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
-# Shell extension to jump to frequently used directories
-brew "autojump"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
 # Analyzes ELF binaries
 brew "binsider"
+# Toolchain of the web
+brew "biome"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
 # CLI tool for analyzing Claude Code usage from local JSONL files
@@ -47,14 +54,20 @@ brew "cloudflare-wrangler"
 brew "cpufetch"
 # List system USB buses and devices
 brew "cyme"
+# Pluggable and configurable code formatting platform written in Rust
+brew "dprint"
 # Command-line tool to download release assets from GitHub
 brew "dra"
+# Embeddable SQL OLAP Database Management System
+brew "duckdb"
 # Disk Usage/Free Utility - a better 'df' alternative
 brew "duf"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
 # Modern, maintained replacement for ls
 brew "eza"
+# Command-line batch renaming tool
+brew "f2"
 # Like neofetch, but much faster because written mostly in C
 brew "fastfetch"
 # Simple, fast and user-friendly alternative to find
@@ -75,6 +88,8 @@ brew "git"
 brew "git-delta"
 # Render markdown on the CLI
 brew "glow"
+# CLI for Drive, Gmail, Calendar, Sheets, Docs, Chat, Admin, and more
+brew "googleworkspace-cli"
 # Ping, but with a graph
 brew "gping"
 # Graph visualization software from AT&T and Bell Labs
@@ -83,6 +98,12 @@ brew "graphviz"
 brew "gtk4"
 # Tools and libraries to manipulate images in select formats
 brew "imagemagick"
+# JQ clone focussed on correctness, speed, and simplicity
+brew "jaq"
+# Lightweight and flexible command-line JSON processor
+brew "jq"
+# Simple terminal UI for git commands
+brew "lazygit"
 # Clone of ls with colorful output, file type icons, and more
 brew "lsd"
 # Fast, async, resource-friendly link checker
@@ -139,16 +160,22 @@ brew "sniffnet"
 brew "starship"
 # Modern and pretty fancy file manager for the terminal
 brew "superfile"
+# TOML toolkit written in Rust
+brew "taplo"
 # Modernized, complete, self-contained TeX/LaTeX engine
 brew "tectonic"
 # Telegram Messenger downloader/tools written in Golang
 brew "telegram-downloader"
+# General purpose fuzzy finder TUI
+brew "television"
 # Extremely fast LaTeX formatter written in Rust
 brew "tex-fmt"
 # Official tldr client written in Rust
 brew "tlrc"
 # Upgrade all the things
 brew "topgrade"
+# Command-line interface to the freedesktop.org trashcan
+brew "trash-cli"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -161,8 +188,12 @@ brew "xleak"
 brew "yarn"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
+# Process YAML, JSON, XML, CSV and properties documents from the CLI
+brew "yq"
 # Flexible and fast Zsh plugin manager
 brew "zinit"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # Custom macOS statusbar with shell plugin, interaction and graph support
 brew "felixkratz/formulae/sketchybar"
 # process tree search
@@ -184,6 +215,8 @@ cask "alt-tab"
 cask "android-platform-tools"
 # AI Coding Agent IDE
 cask "antigravity"
+# Professional Account Management for AI Services
+cask "lbjlaq/antigravity-manager/antigravity-tools"
 # Application uninstaller
 cask "appcleaner"
 # Audio utility
@@ -202,10 +235,12 @@ cask "cherry-studio"
 cask "claude"
 # Terminal-based AI coding assistant
 cask "claude-code"
+# Menu bar notifications for Claude Code sessions
+cask "touch-tap/tap/claude-code-notifier"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# Drag and drop file shelf for macOS
-cask "iordv/tap/droppy"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
 # Cross-platform Text Expander written in Rust
 cask "espanso"
 # Web browser
@@ -220,6 +255,8 @@ cask "foobar2000"
 cask "gcloud-cli"
 # Free and open-source image editor
 cask "gimp"
+# CLI for GitKraken
+cask "gitkraken-cli"
 # Web browser
 cask "google-chrome"
 # Client for the Google Drive storage service
@@ -252,8 +289,10 @@ cask "logi-options+"
 cask "lulu"
 # Clipboard manager
 cask "maccy"
-# Local-first meeting recorder with transcription and summaries
-cask "roblibob/minute/minute"
+# Create new files from Finder right-click menu
+cask "garfieldfluffjr/macnewfile/macnewfile"
+# Minimal macOS menubar app showing real-time network upload and download rates
+cask "rana-gmbh/netfluss/netfluss"
 # Open-source software for live streaming and screen recording
 cask "obs"
 # Knowledge base that works on top of a local folder of plain text Markdown files
@@ -266,6 +305,8 @@ cask "podman-desktop"
 cask "lzt1008/powerflow/powerflow"
 # Graphical user interface for the 'defaults' command
 cask "prefs-editor"
+# Command center for AI coding assistants on macOS
+cask "nguyenphutrong/tap/quotio"
 # Archive manager for data compression and backups
 cask "rar"
 # Open source virtual/remote desktop application
@@ -280,26 +321,34 @@ cask "squirrel-app"
 cask "stats"
 # Control windows and applications right from your trackpad
 cask "swish"
+# Tool to explore all the running tasks (processes)
+cask "taskexplorer"
 # Temperature monitoring, fan control and diagnostics
 cask "tg-pro"
+# Monitor your Claude AI usage limits from macOS desktop
+cask "athevon/tokeneater/tokeneater"
 # Pin any window to the top of your screen.
 cask "lihaoyun6/tap/topit"
 # Open-source code editor
 cask "visual-studio-code"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
-cask "wezterm"
+cask "wezterm@nightly"
 # Window manager
 cask "wins"
 mas "1001 Record", id: 6451834996
 mas "AmorphousDiskMark", id: 1168254295
 mas "Amphetamine", id: 937984704
 mas "Clip Hold", id: 6748125479
+mas "Code Peek+", id: 6760186407
 mas "Dropover", id: 1355679052
 mas "JobSnail", id: 6449959070
 mas "PixelTidy", id: 6756529033
+mas "PreviewText", id: 1660037028
 mas "sing-box", id: 6673731168
 mas "Snippety", id: 1530751461
 mas "Xcode", id: 497799835
+vscode "google-workspace.google-workspace-developer-tools"
 cargo "cargo-binstall"
 cargo "cargo-cache"
 cargo "cargo-update"
+uv "notebooklm-mcp-server"
