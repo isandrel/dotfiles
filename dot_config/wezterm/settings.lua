@@ -23,35 +23,140 @@ local function get(section, key)
     return toml[section] and toml[section][key] or nil
 end
 
+local function get_or(section, key, default)
+    local value = get(section, key)
+    if value == nil then
+        return default
+    end
+    return value
+end
+
+local function section_or(section, default)
+    local value = toml[section]
+    if value == nil then
+        return default
+    end
+    return value
+end
+
+local function nil_if_empty(value)
+    if value == '' then
+        return nil
+    end
+    return value
+end
+
 local settings = {}
 
 -- ── Fonts ────────────────────────────────────────────────────
-settings.font_family = get('fonts', 'family') or 'LiterationMono Nerd Font'
-settings.font_weight = get('fonts', 'weight') or 'Medium'
-settings.font_size = get('fonts', 'size') or (platform.is_mac and 12 or 9)
+settings.font_family = get_or('fonts', 'family', 'LiterationMono Nerd Font')
+settings.font_weight = get_or('fonts', 'weight', 'Medium')
+settings.font_size = get_or('fonts', 'size', platform.is_mac and 12 or 9)
+settings.freetype_load_target = get_or('fonts', 'freetype_load_target', 'Normal')
+settings.freetype_render_target = get_or('fonts', 'freetype_render_target', 'Normal')
 
 -- ── Appearance ───────────────────────────────────────────────
-settings.max_fps = get('appearance', 'max_fps') or 120
-settings.animation_fps = get('appearance', 'animation_fps') or 60
+settings.front_end = get_or('appearance', 'front_end', 'WebGpu')
+settings.max_fps = get_or('appearance', 'max_fps', 120)
+settings.animation_fps = get_or('appearance', 'animation_fps', 60)
 settings.color_scheme = get('appearance', 'color_scheme')
-settings.background_opacity = get('appearance', 'background_opacity') or 0.96
+settings.underline_thickness = get_or('appearance', 'underline_thickness', '1.5pt')
+settings.background_opacity = get_or('appearance', 'background_opacity', 0.96)
+settings.enable_scroll_bar = get_or('appearance', 'enable_scroll_bar', true)
+settings.enable_tab_bar = get_or('appearance', 'enable_tab_bar', true)
+settings.hide_tab_bar_if_only_one_tab = get_or('appearance', 'hide_tab_bar_if_only_one_tab', true)
+settings.use_fancy_tab_bar = get_or('appearance', 'use_fancy_tab_bar', false)
+settings.tab_max_width = get_or('appearance', 'tab_max_width', 25)
+settings.show_tab_index_in_tab_bar = get_or('appearance', 'show_tab_index_in_tab_bar', false)
+settings.switch_to_last_active_tab_when_closing_tab = get_or(
+    'appearance',
+    'switch_to_last_active_tab_when_closing_tab',
+    true
+)
+settings.window_decorations = get_or('appearance', 'window_decorations', 'RESIZE')
+settings.adjust_window_size_when_changing_font_size = get_or(
+    'appearance',
+    'adjust_window_size_when_changing_font_size',
+    false
+)
+settings.window_close_confirmation = get_or('appearance', 'window_close_confirmation', 'NeverPrompt')
+settings.window_frame_active_titlebar_bg = get_or(
+    'appearance',
+    'window_frame_active_titlebar_bg',
+    '#090909'
+)
+settings.window_padding = get_or('appearance', 'window_padding', {
+    left = 0,
+    right = 0,
+    top = 10,
+    bottom = 7.5,
+})
+settings.inactive_pane_hsb = get_or('appearance', 'inactive_pane_hsb', {
+    saturation = 1,
+    brightness = 1,
+})
+settings.visual_bell = get_or('appearance', 'visual_bell', {
+    fade_in_function = 'EaseIn',
+    fade_in_duration_ms = 250,
+    fade_out_function = 'EaseOut',
+    fade_out_duration_ms = 250,
+    target = 'CursorColor',
+})
+settings.cursor = get_or('appearance', 'cursor', {
+    blink_ease_in = 'EaseOut',
+    blink_ease_out = 'EaseOut',
+    style = 'BlinkingBlock',
+    blink_rate = 650,
+})
+settings.backdrop = get_or('appearance', 'backdrop', {})
+settings.backdrop.enabled = settings.backdrop.enabled ~= false
+settings.backdrop.start_in_focus_mode = settings.backdrop.start_in_focus_mode == true
+settings.backdrop.image_glob = settings.backdrop.image_glob or '*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}'
+settings.backdrop.image_horizontal_align = settings.backdrop.image_horizontal_align or 'Center'
+settings.backdrop.images_dir = nil_if_empty(settings.backdrop.images_dir) or get('backdrops', 'images_dir')
+settings.backdrop.focus_color = nil_if_empty(settings.backdrop.focus_color) or get('backdrops', 'focus_color')
+settings.backdrop.overlay_color = nil_if_empty(settings.backdrop.overlay_color)
+settings.backdrop.overlay_opacity = settings.backdrop.overlay_opacity or settings.background_opacity
+settings.backdrop.overlay = settings.backdrop.overlay or {}
+settings.backdrop.overlay.height = settings.backdrop.overlay.height or '120%'
+settings.backdrop.overlay.width = settings.backdrop.overlay.width or '120%'
+settings.backdrop.overlay.vertical_offset = settings.backdrop.overlay.vertical_offset or '-10%'
+settings.backdrop.overlay.horizontal_offset = settings.backdrop.overlay.horizontal_offset or '-10%'
+
+-- ── GPU / Rendering ──────────────────────────────────────────
+settings.gpu = section_or('gpu', {})
+settings.gpu.power_preference = settings.gpu.power_preference or 'HighPerformance'
+settings.gpu.adapter_strategy = settings.gpu.adapter_strategy or 'best'
+settings.gpu.backend = settings.gpu.backend
+settings.gpu.device_type = settings.gpu.device_type
 
 -- ── General ──────────────────────────────────────────────────
-settings.scrollback_lines = get('general', 'scrollback_lines') or 20000
-settings.date_format = get('general', 'date_format') or '%a %H:%M:%S'
+settings.automatically_reload_config = get_or('general', 'automatically_reload_config', true)
+settings.exit_behavior = get_or('general', 'exit_behavior', 'CloseOnCleanExit')
+settings.exit_behavior_messaging = get_or('general', 'exit_behavior_messaging', 'Verbose')
+settings.status_update_interval = get_or('general', 'status_update_interval', 1000)
+settings.scrollback_lines = get_or('general', 'scrollback_lines', 20000)
+settings.date_format = get_or('general', 'date_format', '%a %H:%M:%S')
 
 -- ── Shell / Launch ───────────────────────────────────────────
 settings.default_shell = get('shell', 'default') -- nil = use platform defaults
+settings.launch_menu = section_or('launch_menu', {})
+
+-- ── Domains ──────────────────────────────────────────────────
+settings.domains = section_or('domains', {})
+settings.domains.enable_ssh_wsl = get_or('domains', 'enable_ssh_wsl', true)
+settings.domains.ssh_wsl_name = get_or('domains', 'ssh_wsl_name', 'wsl.ssh')
+settings.domains.ssh_wsl_remote_address = get_or('domains', 'ssh_wsl_remote_address', 'localhost')
+settings.domains.ssh_wsl_multiplexing = get_or('domains', 'ssh_wsl_multiplexing', 'None')
+settings.domains.ssh_wsl_assume_shell = get_or('domains', 'ssh_wsl_assume_shell', 'Posix')
+settings.domains.enable_wsl = get_or('domains', 'enable_wsl', true)
+settings.domains.wsl_name_prefix = get_or('domains', 'wsl_name_prefix', 'WSL:')
 
 -- ── Domains (WSL) ────────────────────────────────────────────
-settings.wsl_user = get('wsl', 'user') or 'kevin'
-settings.wsl_distro = get('wsl', 'distro') or 'Ubuntu'
+settings.wsl_user = get_or('wsl', 'user', 'username')
+settings.wsl_distro = get_or('wsl', 'distro', 'Ubuntu')
 
 -- ── Windows-specific paths ───────────────────────────────────
-settings.win_user = get('windows', 'user') or 'kevin'
-
--- ── Backdrops ────────────────────────────────────────────────
-settings.backdrop_images_dir = get('backdrops', 'images_dir')   -- nil = default dir
-settings.backdrop_focus_color = get('backdrops', 'focus_color') -- nil = theme bg
+settings.win_user = get_or('windows', 'user', 'username')
 
 return settings

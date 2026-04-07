@@ -4,66 +4,50 @@ local settings = require('settings')
 
 return {
    max_fps = settings.max_fps,
-   front_end = 'WebGpu',
-   webgpu_power_preference = 'HighPerformance',
-   webgpu_preferred_adapter = gpu_adapters:pick_best(),
-   -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Dx12', 'IntegratedGpu'),
-   -- webgpu_preferred_adapter = gpu_adapters:pick_manual('Gl', 'Other'),
-   underline_thickness = '1.5pt',
+   front_end = settings.front_end,
+   webgpu_power_preference = settings.gpu.power_preference,
+   webgpu_preferred_adapter = gpu_adapters:pick(settings.gpu),
+   underline_thickness = settings.underline_thickness,
 
    -- cursor
    animation_fps = settings.animation_fps,
-   cursor_blink_ease_in = 'EaseOut',
-   cursor_blink_ease_out = 'EaseOut',
-   default_cursor_style = 'BlinkingBlock',
-   cursor_blink_rate = 650,
+   cursor_blink_ease_in = settings.cursor.blink_ease_in,
+   cursor_blink_ease_out = settings.cursor.blink_ease_out,
+   default_cursor_style = settings.cursor.style,
+   cursor_blink_rate = settings.cursor.blink_rate,
 
    -- color scheme
    color_scheme = settings.color_scheme,
 
    -- background
-   background = backdrops:initial_options(false), -- set to true if you want wezterm to start on focus mode
+   background = settings.backdrop.enabled and backdrops:initial_options(settings.backdrop.start_in_focus_mode) or nil,
 
    -- scrollbar
-   enable_scroll_bar = true,
+   enable_scroll_bar = settings.enable_scroll_bar,
 
    -- tab bar
-   enable_tab_bar = true,
-   hide_tab_bar_if_only_one_tab = true,
-   use_fancy_tab_bar = false,
-   tab_max_width = 25,
-   show_tab_index_in_tab_bar = false,
-   switch_to_last_active_tab_when_closing_tab = true,
+   enable_tab_bar = settings.enable_tab_bar,
+   hide_tab_bar_if_only_one_tab = settings.hide_tab_bar_if_only_one_tab,
+   use_fancy_tab_bar = settings.use_fancy_tab_bar,
+   tab_max_width = settings.tab_max_width,
+   show_tab_index_in_tab_bar = settings.show_tab_index_in_tab_bar,
+   switch_to_last_active_tab_when_closing_tab = settings.switch_to_last_active_tab_when_closing_tab,
 
    -- window
-   window_padding = {
-      left = 0,
-      right = 0,
-      top = 10,
-      bottom = 7.5,
-   },
-   adjust_window_size_when_changing_font_size = false,
-   window_close_confirmation = 'NeverPrompt',
+   window_padding = settings.window_padding,
+   adjust_window_size_when_changing_font_size = settings.adjust_window_size_when_changing_font_size,
+   window_close_confirmation = settings.window_close_confirmation,
    window_frame = {
-      active_titlebar_bg = '#090909',
+      active_titlebar_bg = settings.window_frame_active_titlebar_bg,
       -- font = fonts.font,
       -- font_size = fonts.font_size,
    },
-   window_decorations = "RESIZE",
+   window_decorations = settings.window_decorations,
    -- inactive_pane_hsb = {
    --    saturation = 0.9,
    --    brightness = 0.65,
    -- },
-   inactive_pane_hsb = {
-      saturation = 1,
-      brightness = 1,
-   },
+   inactive_pane_hsb = settings.inactive_pane_hsb,
 
-   visual_bell = {
-      fade_in_function = 'EaseIn',
-      fade_in_duration_ms = 250,
-      fade_out_function = 'EaseOut',
-      fade_out_duration_ms = 250,
-      target = 'CursorColor',
-   },
+   visual_bell = settings.visual_bell,
 }

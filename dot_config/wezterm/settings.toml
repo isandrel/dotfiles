@@ -10,31 +10,164 @@
 family = "LiterationMono Nerd Font"
 weight = "Medium"
 # size is auto-detected per platform (12 on mac, 9 on others)
-size = 12.5
+size                   = 12.5
+freetype_load_target   = "Normal"
+freetype_render_target = "Normal"
 
 [appearance]
-max_fps = 120
-animation_fps = 60  # cursor blink; 60 is sufficient
-color_scheme = "Catppuccin Mocha"
-background_opacity = 0.96
+front_end                                  = "WebGpu"
+max_fps                                    = 120
+animation_fps                              = 60                 # cursor blink; 60 is sufficient
+color_scheme                               = "Catppuccin Mocha"
+underline_thickness                        = "1.5pt"
+background_opacity                         = 0.96
+enable_scroll_bar                          = true
+enable_tab_bar                             = true
+hide_tab_bar_if_only_one_tab               = true
+use_fancy_tab_bar                          = false
+tab_max_width                              = 25
+show_tab_index_in_tab_bar                  = false
+switch_to_last_active_tab_when_closing_tab = true
+window_decorations                         = "RESIZE"
+adjust_window_size_when_changing_font_size = false
+window_close_confirmation                  = "NeverPrompt"
+window_frame_active_titlebar_bg            = "#090909"
+
+[appearance.window_padding]
+left   = 0
+right  = 0
+top    = 10
+bottom = 7.5
+
+[appearance.inactive_pane_hsb]
+saturation = 1
+brightness = 1
+
+[appearance.visual_bell]
+fade_in_function     = "EaseIn"
+fade_in_duration_ms  = 250
+fade_out_function    = "EaseOut"
+fade_out_duration_ms = 250
+target               = "CursorColor"
+
+[appearance.cursor]
+blink_ease_in  = "EaseOut"
+blink_ease_out = "EaseOut"
+style          = "BlinkingBlock"
+blink_rate     = 650
+
+[appearance.backdrop]
+enabled                = true
+start_in_focus_mode    = false
+overlay_opacity        = 0.96
+image_glob             = "*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}"
+image_horizontal_align = "Center"
+images_dir             = ""
+focus_color            = ""
+overlay_color          = ""
+
+[appearance.backdrop.overlay]
+height            = "120%"
+width             = "120%"
+vertical_offset   = "-10%"
+horizontal_offset = "-10%"
 
 [general]
-scrollback_lines = 20000
-date_format = "%a %H:%M:%S"
+automatically_reload_config = true
+exit_behavior               = "CloseOnCleanExit"
+exit_behavior_messaging     = "Verbose"
+status_update_interval      = 1000
+scrollback_lines            = 20000
+date_format                 = "%a %H:%M:%S"
 
 [shell]
 # Override the default shell. Leave commented to use platform defaults.
 # Examples: ["zsh", "-l"], ["/opt/homebrew/bin/fish", "-l"], ["pwsh", "-NoLogo"]
 # default = ["zsh", "-l"]
 
+[gpu]
+power_preference = "HighPerformance"
+# adapter_strategy = "best"
+# To manually choose an adapter, set:
+# adapter_strategy = "manual"
+# backend = "Metal"
+# device_type = "IntegratedGpu"
+
+[domains]
+enable_ssh_wsl         = true
+ssh_wsl_name           = "wsl.ssh"
+ssh_wsl_remote_address = "localhost"
+ssh_wsl_multiplexing   = "None"
+ssh_wsl_assume_shell   = "Posix"
+enable_wsl             = true
+wsl_name_prefix        = "WSL:"
+
+[launch_menu]
+# Define platform-specific launch menus by overriding the arrays below.
+# Each item must be a table with a label and args array.
+
+[[launch_menu.mac]]
+label = "Bash"
+args  = [ "bash", "-l" ]
+
+[[launch_menu.mac]]
+label = "Fish"
+args  = [ "/opt/homebrew/bin/fish", "-l" ]
+
+[[launch_menu.mac]]
+label = "Nushell"
+args  = [ "/opt/homebrew/bin/nu", "-l" ]
+
+[[launch_menu.mac]]
+label = "Zsh"
+args  = [ "zsh", "-l" ]
+
+[[launch_menu.linux]]
+label = "Bash"
+args  = [ "bash", "-l" ]
+
+[[launch_menu.linux]]
+label = "Fish"
+args  = [ "fish", "-l" ]
+
+[[launch_menu.linux]]
+label = "Zsh"
+args  = [ "zsh", "-l" ]
+
+[[launch_menu.windows]]
+label = "PowerShell Core"
+args  = [ "pwsh", "-NoLogo" ]
+
+[[launch_menu.windows]]
+label = "PowerShell Desktop"
+args  = [ "powershell" ]
+
+[[launch_menu.windows]]
+label = "Command Prompt"
+args  = [ "cmd" ]
+
+[[launch_menu.windows]]
+label = "Nushell"
+args  = [ "nu" ]
+
+[[launch_menu.windows]]
+label = "Msys2"
+args  = [ "ucrt64.cmd" ]
+
+[[launch_menu.windows]]
+label = "Git Bash"
+args  = [ "C:\\Users\\${win_user}\\scoop\\apps\\git\\current\\bin\\bash.exe" ]
+
 [wsl]
 # Only relevant on Windows; ignored on macOS/Linux.
-user = "kevin"
+# Set this to your Windows/WSL username when using WSL domains.
+user   = "username"
 distro = "Ubuntu"
 
 [windows]
 # Only relevant on Windows; ignored on macOS/Linux.
-user = "kevin"
+# Used for Windows-specific path expansion like Git Bash.
+user = "username"
 
 [backdrops]
 # Set to a custom directory, or leave commented for default (./backdrops/)

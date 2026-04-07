@@ -10,8 +10,6 @@ math.random()
 math.random()
 math.random()
 
-local GLOB_PATTERN = '*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}'
-
 ---@class BackDrops
 ---@field current_idx number index of current image
 ---@field images string[] background images
@@ -24,15 +22,29 @@ BackDrops.__index = BackDrops
 --- Initialise backdrop controller
 ---@private
 function BackDrops:init()
+   local overlay = settings.backdrop.overlay
    local inital = {
       current_idx = 1,
       images = {},
       images_dir = wezterm.config_dir .. '/backdrops/',
-      focus_color = colors.background,
+      focus_color = settings.backdrop.focus_color or colors.background,
+      overlay_color = settings.backdrop.overlay_color or colors.background,
+      overlay_opacity = settings.backdrop.overlay_opacity,
+      image_glob = settings.backdrop.image_glob,
+      image_horizontal_align = settings.backdrop.image_horizontal_align,
+      overlay_height = overlay.height,
+      overlay_width = overlay.width,
+      overlay_vertical_offset = overlay.vertical_offset,
+      overlay_horizontal_offset = overlay.horizontal_offset,
       focus_on = false,
    }
    local backdrops = setmetatable(inital, self)
-   return backdrops
+
+    if settings.backdrop.images_dir then
+       backdrops:set_images_dir(settings.backdrop.images_dir)
+    end
+
+    return backdrops
 end
 
 ---Override the default `images_dir`
@@ -59,7 +71,7 @@ end
 ---   This throws a coroutine error if the function is invoked in outside of `wezterm.lua` in the -
 ---   initial load of the Terminal config.
 function BackDrops:set_images()
-   self.images = wezterm.glob(self.images_dir .. GLOB_PATTERN)
+   self.images = wezterm.glob(self.images_dir .. self.image_glob)
    return self
 end
 
@@ -71,40 +83,43 @@ function BackDrops:set_focus(focus_color)
    return self
 end
 
+function BackDrops:_overlay_layer(color, opacity)
+   return {
+      source = { Color = color },
+      height = self.overlay_height,
+      width = self.overlay_width,
+      vertical_offset = self.overlay_vertical_offset,
+      horizontal_offset = self.overlay_horizontal_offset,
+      opacity = opacity,
+   }
+end
+
+function BackDrops:_image_layer(image)
+   return {
+      source = { File = image },
+      horizontal_align = self.image_horizontal_align,
+   }
+end
+
 ---Create the `background` options with the current image
 ---@private
 ---@return table
 function BackDrops:_create_opts()
-   return {
-      {
-         source = { File = self.images[self.current_idx] },
-         horizontal_align = 'Center',
-      },
-      {
-         source = { Color = colors.background },
-         height = '120%',
-         width = '120%',
-         vertical_offset = '-10%',
-         horizontal_offset = '-10%',
-         opacity = settings.background_opacity,
-      },
-   }
+   local opts = { self:_overlay_layer(self.overlay_color, self.overlay_opacity) }
+
+   local image = self.images[self.current_idx]
+   if image then
+      table.insert(opts, 1, self:_image_layer(image))
+   end
+
+   return opts
 end
 
 ---Create the `background` options for focus mode
 ---@private
 ---@return table
 function BackDrops:_create_focus_opts()
-   return {
-      {
-         source = { Color = self.focus_color },
-         height = '120%',
-         width = '120%',
-         vertical_offset = '-10%',
-         horizontal_offset = '-10%',
-         opacity = 1,
-      },
-   }
+   return { self:_overlay_layer(self.focus_color, 1) }
 end
 
 ---Set the initial options for `background`
@@ -137,16 +152,7 @@ end
 ---@param window any WezTerm Window see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:_set_focus_opt(window)
    local opts = {
-      background = {
-         {
-            source = { Color = self.focus_color },
-            height = '120%',
-            width = '120%',
-            vertical_offset = '-10%',
-            horizontal_offset = '-10%',
-            opacity = 1,
-         },
-      },
+      background = { self:_overlay_layer(self.focus_color, 1) },
       enable_tab_bar = window:effective_config().enable_tab_bar,
    }
    window:set_config_overrides(opts)
@@ -171,7 +177,11 @@ end
 ---Pass in `Window` object to override the current window options
 ---@param window any? WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:random(window)
-   self.current_idx = math.random(#self.images)
+   if #self.images > 0 then
+      self.current_idx = math.random(#self.images)
+   else
+      self.current_idx = 1
+   end
 
    if window ~= nil then
       self:_set_opt(window, self:_create_opts())
@@ -181,6 +191,11 @@ end
 ---Cycle the loaded `files` and select the next background
 ---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:cycle_forward(window)
+   if #self.images == 0 then
+      self:_set_opt(window, self:_create_opts())
+      return
+   end
+
    if self.current_idx == #self.images then
       self.current_idx = 1
    else
@@ -192,6 +207,11 @@ end
 ---Cycle the loaded `files` and select the previous background
 ---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:cycle_back(window)
+   if #self.images == 0 then
+      self:_set_opt(window, self:_create_opts())
+      return
+   end
+
    if self.current_idx == 1 then
       self.current_idx = #self.images
    else
@@ -204,6 +224,12 @@ end
 ---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 ---@param idx number index of the `files` array
 function BackDrops:set_img(window, idx)
+   if #self.images == 0 then
+      wezterm.log_error('No backdrop images available')
+      self:_set_opt(window, self:_create_opts())
+      return
+   end
+
    if idx > #self.images or idx < 0 then
       wezterm.log_error('Index out of range')
       return

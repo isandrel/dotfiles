@@ -2,10 +2,10 @@ local settings = require('settings')
 
 return {
    -- behaviours
-   automatically_reload_config = true,
-   exit_behavior = 'CloseOnCleanExit', -- if the shell program exited with a successful status
-   exit_behavior_messaging = 'Verbose',
-   status_update_interval = 1000,
+   automatically_reload_config = settings.automatically_reload_config,
+   exit_behavior = settings.exit_behavior, -- if the shell program exited with a successful status
+   exit_behavior_messaging = settings.exit_behavior_messaging,
+   status_update_interval = settings.status_update_interval,
 
    scrollback_lines = settings.scrollback_lines,
 
