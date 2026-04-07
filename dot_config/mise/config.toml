@@ -1,0 +1,6 @@
+[tools]
+bun  = "latest"
+rust = "latest"
+
+[settings]
+use_versions_host_track = false
