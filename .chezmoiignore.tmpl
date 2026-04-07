@@ -1,0 +1,62 @@
+# OS junk
+**/.DS_Store
+**/Thumbs.db
+
+# Logs
+**/*.log
+
+# Editor temp files
+**/*.swp
+**/*.swo
+**/*~
+**/.#*
+
+# Nested repo metadata
+**/.git/**
+**/.svn/**
+**/.hg/**
+
+# Common dependency / cache directories
+**/node_modules/**
+**/vendor/**
+**/.cache/**
+**/cache/**
+**/logs/**
+
+# Python local artifacts
+**/__pycache__/**
+**/*.pyc
+**/.venv/**
+**/venv/**
+
+# Local state / generated databases
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+**/*.boltdb
+**/*.lock
+**/*.bak
+**/*.tmp
+
+# Common secret-bearing files
+**/.env
+**/.env.*
+**/*secret*
+**/*token*
+**/*credential*
+**/*credentials*
+**/*client_secret*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+
+# Repo-only files that should not be applied to $HOME
+README.md
+LICENSE
+.github/**
+docs/**
+
+{{ if eq .chezmoi.os "darwin" -}}
+**/Library/**
+{{ end -}}
