@@ -1,0 +1,96 @@
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]="#1e1e2e"
+
+# Main text color
+theme[main_fg]="#cdd6f4"
+
+# Title color for boxes
+theme[title]="#89b4fa"
+
+# Highlight color for keyboard shortcuts
+theme[hi_fg]="#f5c2e7"
+
+# Background color of selected item in processes box
+theme[selected_bg]="#313244"
+
+# Foreground color of selected item in processes box
+theme[selected_fg]="#cdd6f4"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="#6c7086"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="#cdd6f4"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="#94e2d5"
+
+# Cpu box outline colors
+theme[cpu_box]="#89b4fa"
+theme[mem_box]="#a6e3a1"
+theme[net_box]="#f9e2af"
+theme[proc_box]="#f5c2e7"
+
+# Box divider line and small boxes line color
+theme[div_line]="#45475a"
+
+# Temperature graph colors
+theme[temp_start]="#a6e3a1"
+theme[temp_mid]="#f9e2af"
+theme[temp_end]="#f38ba8"
+
+# CPU graph colors
+theme[cpu_start]="#94e2d5"
+theme[cpu_mid]="#89b4fa"
+theme[cpu_end]="#cba6f7"
+
+# Mem/Disk free meter
+theme[free_start]="#74c7ec"
+theme[free_mid]="#89dceb"
+theme[free_end]="#94e2d5"
+
+# Mem/Disk cached meter
+theme[cached_start]="#f9e2af"
+theme[cached_mid]="#fab387"
+theme[cached_end]="#eba0ac"
+
+# Mem/Disk available meter
+theme[available_start]="#a6e3a1"
+theme[available_mid]="#94e2d5"
+theme[available_end]="#89dceb"
+
+# Mem/Disk used meter
+theme[used_start]="#f5c2e7"
+theme[used_mid]="#cba6f7"
+theme[used_end]="#b4befe"
+
+# Download graph colors
+theme[download_start]="#89dceb"
+theme[download_mid]="#74c7ec"
+theme[download_end]="#89b4fa"
+
+# Upload graph colors
+theme[upload_start]="#f5c2e7"
+theme[upload_mid]="#cba6f7"
+theme[upload_end]="#b4befe"
+
+# Process box color gradient for threads, mem and cpu usage
+theme[process_start]="#94e2d5"
+theme[process_mid]="#89b4fa"
+theme[process_end]="#f5c2e7"
+
+# Interrupt values box
+theme[proc_color]="#89b4fa"
+
+# Battery colors
+theme[battery_start]="#a6e3a1"
+theme[battery_mid]="#f9e2af"
+theme[battery_end]="#f38ba8"
+
+# Color for ranges above default warning and critical levels
+theme[temp_scale]="#eba0ac"
+
+# Process memory box colors
+theme[mem_graph_start]="#a6e3a1"
+theme[mem_graph_mid]="#f9e2af"
+theme[mem_graph_end]="#f38ba8"
