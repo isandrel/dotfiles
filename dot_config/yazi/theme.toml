@@ -2,4 +2,5 @@
 # Keep this file minimal and override only if needed.
 
 [flavor]
-dark = "catppuccin-mocha"
+light = "catppuccin-latte"
+dark  = "catppuccin-mocha"
