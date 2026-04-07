@@ -1,5 +1,5 @@
 {
-  "view_type": "Sparkline",
-  "color": "Green",
-  "interval": 1000
+	"view_type": "Sparkline",
+	"color": "Green",
+	"interval": 1000
 }
