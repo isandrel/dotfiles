@@ -12,7 +12,7 @@ if settings.domains.enable_ssh_wsl then
          multiplexing = settings.domains.ssh_wsl_multiplexing,
          default_prog = default_prog,
          assume_shell = settings.domains.ssh_wsl_assume_shell,
-      }
+      },
    }
 end
 

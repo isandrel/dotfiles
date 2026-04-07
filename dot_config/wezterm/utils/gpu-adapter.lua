@@ -143,11 +143,17 @@ function GpuAdapters:pick(config)
       if config.backend and config.device_type then
          return self:pick_manual(config.backend, config.device_type)
       end
-      wezterm.log_error('Manual GPU selection requires both backend and device_type. Using default adapter.')
+      wezterm.log_error(
+         'Manual GPU selection requires both backend and device_type. Using default adapter.'
+      )
       return nil
    end
 
-   wezterm.log_error('Unknown GPU adapter strategy: ' .. tostring(config.adapter_strategy) .. '. Using default adapter.')
+   wezterm.log_error(
+      'Unknown GPU adapter strategy: '
+         .. tostring(config.adapter_strategy)
+         .. '. Using default adapter.'
+   )
    return nil
 end
 

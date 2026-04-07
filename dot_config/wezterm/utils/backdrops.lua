@@ -40,11 +40,11 @@ function BackDrops:init()
    }
    local backdrops = setmetatable(inital, self)
 
-    if settings.backdrop.images_dir then
-       backdrops:set_images_dir(settings.backdrop.images_dir)
-    end
+   if settings.backdrop.images_dir then
+      backdrops:set_images_dir(settings.backdrop.images_dir)
+   end
 
-    return backdrops
+   return backdrops
 end
 
 ---Override the default `images_dir`
@@ -157,8 +157,6 @@ function BackDrops:_set_focus_opt(window)
    }
    window:set_config_overrides(opts)
 end
-
-
 
 ---Convert the `files` array to a table of `InputSelector` choices
 ---see: https://wezfurlong.org/wezterm/config/lua/keyassignment/InputSelector.html

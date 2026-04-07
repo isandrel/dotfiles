@@ -20,7 +20,9 @@ return {
    color_scheme = settings.color_scheme,
 
    -- background
-   background = settings.backdrop.enabled and backdrops:initial_options(settings.backdrop.start_in_focus_mode) or nil,
+   background = settings.backdrop.enabled and backdrops:initial_options(
+      settings.backdrop.start_in_focus_mode
+   ) or nil,
 
    -- scrollbar
    enable_scroll_bar = settings.enable_scroll_bar,

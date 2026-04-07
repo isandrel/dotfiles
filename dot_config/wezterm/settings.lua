@@ -13,37 +13,37 @@ local settings_path = wezterm.config_dir .. '/settings.toml'
 local f = io.open(settings_path, 'r')
 local toml = {}
 if f then
-    local content = f:read('*a')
-    f:close()
-    toml = wezterm.serde.toml_decode(content) or {}
+   local content = f:read('*a')
+   f:close()
+   toml = wezterm.serde.toml_decode(content) or {}
 end
 
 -- Helper: safe nested access
 local function get(section, key)
-    return toml[section] and toml[section][key] or nil
+   return toml[section] and toml[section][key] or nil
 end
 
 local function get_or(section, key, default)
-    local value = get(section, key)
-    if value == nil then
-        return default
-    end
-    return value
+   local value = get(section, key)
+   if value == nil then
+      return default
+   end
+   return value
 end
 
 local function section_or(section, default)
-    local value = toml[section]
-    if value == nil then
-        return default
-    end
-    return value
+   local value = toml[section]
+   if value == nil then
+      return default
+   end
+   return value
 end
 
 local function nil_if_empty(value)
-    if value == '' then
-        return nil
-    end
-    return value
+   if value == '' then
+      return nil
+   end
+   return value
 end
 
 local settings = {}
@@ -68,53 +68,48 @@ settings.hide_tab_bar_if_only_one_tab = get_or('appearance', 'hide_tab_bar_if_on
 settings.use_fancy_tab_bar = get_or('appearance', 'use_fancy_tab_bar', false)
 settings.tab_max_width = get_or('appearance', 'tab_max_width', 25)
 settings.show_tab_index_in_tab_bar = get_or('appearance', 'show_tab_index_in_tab_bar', false)
-settings.switch_to_last_active_tab_when_closing_tab = get_or(
-    'appearance',
-    'switch_to_last_active_tab_when_closing_tab',
-    true
-)
+settings.switch_to_last_active_tab_when_closing_tab =
+   get_or('appearance', 'switch_to_last_active_tab_when_closing_tab', true)
 settings.window_decorations = get_or('appearance', 'window_decorations', 'RESIZE')
-settings.adjust_window_size_when_changing_font_size = get_or(
-    'appearance',
-    'adjust_window_size_when_changing_font_size',
-    false
-)
-settings.window_close_confirmation = get_or('appearance', 'window_close_confirmation', 'NeverPrompt')
-settings.window_frame_active_titlebar_bg = get_or(
-    'appearance',
-    'window_frame_active_titlebar_bg',
-    '#090909'
-)
+settings.adjust_window_size_when_changing_font_size =
+   get_or('appearance', 'adjust_window_size_when_changing_font_size', false)
+settings.window_close_confirmation =
+   get_or('appearance', 'window_close_confirmation', 'NeverPrompt')
+settings.window_frame_active_titlebar_bg =
+   get_or('appearance', 'window_frame_active_titlebar_bg', '#090909')
 settings.window_padding = get_or('appearance', 'window_padding', {
-    left = 0,
-    right = 0,
-    top = 10,
-    bottom = 7.5,
+   left = 0,
+   right = 0,
+   top = 10,
+   bottom = 7.5,
 })
 settings.inactive_pane_hsb = get_or('appearance', 'inactive_pane_hsb', {
-    saturation = 1,
-    brightness = 1,
+   saturation = 1,
+   brightness = 1,
 })
 settings.visual_bell = get_or('appearance', 'visual_bell', {
-    fade_in_function = 'EaseIn',
-    fade_in_duration_ms = 250,
-    fade_out_function = 'EaseOut',
-    fade_out_duration_ms = 250,
-    target = 'CursorColor',
+   fade_in_function = 'EaseIn',
+   fade_in_duration_ms = 250,
+   fade_out_function = 'EaseOut',
+   fade_out_duration_ms = 250,
+   target = 'CursorColor',
 })
 settings.cursor = get_or('appearance', 'cursor', {
-    blink_ease_in = 'EaseOut',
-    blink_ease_out = 'EaseOut',
-    style = 'BlinkingBlock',
-    blink_rate = 650,
+   blink_ease_in = 'EaseOut',
+   blink_ease_out = 'EaseOut',
+   style = 'BlinkingBlock',
+   blink_rate = 650,
 })
 settings.backdrop = get_or('appearance', 'backdrop', {})
 settings.backdrop.enabled = settings.backdrop.enabled ~= false
 settings.backdrop.start_in_focus_mode = settings.backdrop.start_in_focus_mode == true
-settings.backdrop.image_glob = settings.backdrop.image_glob or '*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}'
+settings.backdrop.image_glob = settings.backdrop.image_glob
+   or '*.{jpg,jpeg,png,gif,bmp,ico,tiff,pnm,dds,tga}'
 settings.backdrop.image_horizontal_align = settings.backdrop.image_horizontal_align or 'Center'
-settings.backdrop.images_dir = nil_if_empty(settings.backdrop.images_dir) or get('backdrops', 'images_dir')
-settings.backdrop.focus_color = nil_if_empty(settings.backdrop.focus_color) or get('backdrops', 'focus_color')
+settings.backdrop.images_dir = nil_if_empty(settings.backdrop.images_dir)
+   or get('backdrops', 'images_dir')
+settings.backdrop.focus_color = nil_if_empty(settings.backdrop.focus_color)
+   or get('backdrops', 'focus_color')
 settings.backdrop.overlay_color = nil_if_empty(settings.backdrop.overlay_color)
 settings.backdrop.overlay_opacity = settings.backdrop.overlay_opacity or settings.background_opacity
 settings.backdrop.overlay = settings.backdrop.overlay or {}

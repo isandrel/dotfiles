@@ -20,11 +20,11 @@ local colors = {
 }
 
 local cells = Cells:new()
-    :add_segment('icon_default', ' ' .. nf.md_domain .. ' ', colors.icon_default)
-    :add_segment('icon_wsl', ' ' .. nf.cod_terminal_linux .. ' ', colors.icon_wsl)
-    :add_segment('icon_ssh', ' ' .. nf.md_ssh .. ' ', colors.icon_ssh)
-    :add_segment('icon_unix', ' ' .. nf.dev_gnu .. ' ', colors.icon_unix)
-    :add_segment('label_text', '', colors.label_text, attr(attr.intensity('Bold')))
+   :add_segment('icon_default', ' ' .. nf.md_domain .. ' ', colors.icon_default)
+   :add_segment('icon_wsl', ' ' .. nf.cod_terminal_linux .. ' ', colors.icon_wsl)
+   :add_segment('icon_ssh', ' ' .. nf.md_ssh .. ' ', colors.icon_ssh)
+   :add_segment('icon_unix', ' ' .. nf.dev_gnu .. ' ', colors.icon_unix)
+   :add_segment('label_text', '', colors.label_text, attr(attr.intensity('Bold')))
 
 local function build_choices()
    local choices = {}

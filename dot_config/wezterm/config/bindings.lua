@@ -8,11 +8,11 @@ local mod = {}
 
 local function normalize_selected_url(text)
    return text:match('^%[[^%]]+%]%((https?://[^%s)]+)%)$')
-       or text:match('^%((https?://[^%s)]+)%)$')
-       or text:match('^%[(https?://[^%s%]]+)%]$')
-       or text:match('^%{(https?://[^%s}]+)%}$')
-       or text:match('^<(https?://[^%s>]+)>$')
-       or text
+      or text:match('^%((https?://[^%s)]+)%)$')
+      or text:match('^%[(https?://[^%s%]]+)%]$')
+      or text:match('^%{(https?://[^%s}]+)%}$')
+      or text:match('^<(https?://[^%s>]+)>$')
+      or text
 end
 
 if platform.is_mac then
