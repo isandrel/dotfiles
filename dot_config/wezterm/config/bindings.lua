@@ -5,6 +5,7 @@ local settings = require('settings')
 local act = wezterm.action
 
 local mod = {}
+local zoom_mod = platform.is_mac and 'SUPER' or 'CTRL'
 
 local function normalize_selected_url(text)
    return text:match('^%[[^%]]+%]%((https?://[^%s)]+)%)$')
@@ -100,46 +101,19 @@ local keys = {
    -- window: spawn windows
    { key = 'n',          mods = mod.SUPER,     action = act.SpawnWindow },
 
-   -- window: zoom window
    {
       key = '-',
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         local dimensions = window:get_dimensions()
-         if dimensions.is_full_screen then
-            return
-         end
-         local new_width = dimensions.pixel_width - 50
-         local new_height = dimensions.pixel_height - 50
-         window:set_inner_size(new_width, new_height)
-      end)
-   },
-   {
-      key = '=',
-      mods = mod.SUPER,
-      action = wezterm.action_callback(function(window, _pane)
-         local dimensions = window:get_dimensions()
-         if dimensions.is_full_screen then
-            return
-         end
-         local new_width = dimensions.pixel_width + 50
-         local new_height = dimensions.pixel_height + 50
-         window:set_inner_size(new_width, new_height)
-      end)
-   },
-   {
-      key = '-',
-      mods = 'SUPER|SHIFT',
+      mods = zoom_mod,
       action = act.DecreaseFontSize,
    },
    {
       key = '=',
-      mods = 'SUPER|SHIFT',
+      mods = zoom_mod,
       action = act.IncreaseFontSize,
    },
    {
       key = '0',
-      mods = mod.SUPER,
+      mods = zoom_mod,
       action = act.ResetFontSize,
    },
 
