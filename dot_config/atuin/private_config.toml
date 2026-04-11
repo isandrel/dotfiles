@@ -1,0 +1,36 @@
+# Atuin configuration
+# Docs: https://docs.atuin.sh/configuration/config/
+
+# Search behavior
+search_mode   = "fuzzy"
+filter_mode   = "directory"
+workspaces    = true
+style         = "compact"
+inline_height = 20
+show_preview  = true
+exit_mode     = "return-original"
+show_help     = true
+show_tabs     = true
+
+# Safety and usability
+enter_accept   = false
+secrets_filter = true
+update_check   = true
+auto_sync      = false
+
+# History filtering
+history_filter = [
+  "^\\s*history\\s",
+  "^\\s*atuin\\s+key\\b",
+  "^\\s*(gh|gcloud|aws|op|bw|rbw|pass|kubectl)\\s+.*(--token|--password|--secret|login)",
+]
+
+[search]
+filters = [ "workspace", "directory", "host", "session", "global" ]
+
+[stats]
+common_prefix    = [ "sudo" ]
+ignored_commands = [ "cd", "ls", "ll", "la", "pwd", "clear", "history" ]
+
+[ui]
+columns = [ "duration", "time", { type = "directory", width = 24 }, "command" ]
