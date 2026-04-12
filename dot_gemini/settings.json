@@ -1,0 +1,75 @@
+{
+  "telemetry": {
+    "enabled": false,
+    "logPrompts": false
+  },
+  "privacy": {
+    "usageStatisticsEnabled": false
+  },
+  "security": {
+    "environmentVariableRedaction": {
+      "enabled": true
+    },
+    "enableConseca": true,
+    "disableYoloMode": true,
+    "disableAlwaysAllow": true,
+    "folderTrust": {
+      "enabled": true
+    },
+    "blockGitExtensions": true,
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "Dracula",
+    "hideFooter": false,
+    "footer": {
+      "hideContextPercentage": false
+    },
+    "showMemoryUsage": true,
+    "showCitations": true,
+    "showModelInfoInChat": true,
+    "showHomeDirectoryWarning": false
+  },
+  "general": {
+    "preferredEditor": "antigravity",
+    "previewFeatures": true,
+    "enableAutoUpdate": false,
+    "vimMode": true,
+    "sessionRetention": {
+      "warningAcknowledged": true,
+      "enabled": true,
+      "maxAge": "30d"
+    }
+  },
+  "output": {
+    "format": "text"
+  },
+  "tools": {
+    "useRipgrep": true,
+    "disableLLMCorrection": true,
+    "shell": {
+      "showColor": true
+    }
+  },
+  "context": {
+    "fileFiltering": {
+      "respectGitIgnore": true,
+      "respectGeminiIgnore": true
+    },
+    "loadMemoryFromIncludeDirectories": false
+  },
+  "ide": {
+    "enabled": true
+  },
+  "mcpServers": {
+    "notebooklm": {
+      "command": "notebooklm-mcp",
+      "args": []
+    }
+  },
+  "hooksConfig": {
+    "enabled": true
+  }
+}
