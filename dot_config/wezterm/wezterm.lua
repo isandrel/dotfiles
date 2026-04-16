@@ -1,24 +1,26 @@
-local Config = require('config')
-local settings = require('settings')
+local wezterm = require('wezterm')
 
 local backdrops = require('utils.backdrops')
-if settings.backdrop_focus_color then
-   backdrops:set_focus(settings.backdrop_focus_color)
-end
-if settings.backdrop_images_dir then
-   backdrops:set_images_dir(settings.backdrop_images_dir)
-end
 backdrops:set_images():random()
 
-require('events.left-status').setup()
-require('events.right-status').setup({ date_format = require('settings').date_format })
-require('events.tab-title').setup({ hide_active_tab_unseen = false, unseen_icon = 'circle' })
-require('events.new-tab-button').setup()
+-- Load tabline FIRST so its update-status handler registers before others
+local tabline_mod = require('modules.tabline')
+tabline_mod.setup()
 
-return Config:init()
-   :append(require('config.appearance'))
-   :append(require('config.bindings'))
-   :append(require('config.domains'))
-   :append(require('config.fonts'))
-   :append(require('config.general'))
-   :append(require('config.launch')).options
+require('events.tab-title').setup()
+require('events.new-tab-button').setup()
+require('events.plugins').setup()
+require('events.open-uri').setup()
+
+local config = wezterm.config_builder()
+
+require('modules.appearance').apply_to_config(config)
+require('modules.bindings').apply_to_config(config)
+require('modules.domains').apply_to_config(config)
+require('modules.fonts').apply_to_config(config)
+require('modules.general').apply_to_config(config)
+require('modules.launch').apply_to_config(config)
+require('modules.plugins').apply_to_config(config)
+tabline_mod.apply_to_config(config)
+
+return config

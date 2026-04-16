@@ -1,30 +1,38 @@
 local wezterm = require('wezterm')
-local launch_menu = require('config.launch').launch_menu
-local domains = require('config.domains')
-local Cells = require('utils.cells')
+local launch_menu = require('modules.launch').launch_menu
+local domains = require('modules.domains')
+local settings = require('settings')
 
 local nf = wezterm.nerdfonts
 local act = wezterm.action
-local attr = Cells.attr
 
 local M = {}
 
----@type table<string, Cells.SegmentColors>
--- stylua: ignore
-local colors = {
-   label_text   = { fg = '#CDD6F4' },
-   icon_default = { fg = '#89B4FA' },
-   icon_wsl     = { fg = '#FAB387' },
-   icon_ssh     = { fg = '#F38BA8' },
-   icon_unix    = { fg = '#CBA6F7' },
-}
+local ntb = settings.new_tab_button.colors
 
-local cells = Cells:new()
-   :add_segment('icon_default', ' ' .. nf.md_domain .. ' ', colors.icon_default)
-   :add_segment('icon_wsl', ' ' .. nf.cod_terminal_linux .. ' ', colors.icon_wsl)
-   :add_segment('icon_ssh', ' ' .. nf.md_ssh .. ' ', colors.icon_ssh)
-   :add_segment('icon_unix', ' ' .. nf.dev_gnu .. ' ', colors.icon_unix)
-   :add_segment('label_text', '', colors.label_text, attr(attr.intensity('Bold')))
+--- Build a formatted label with icon + bold text
+---@param icon_text string
+---@param icon_fg string
+---@param label string
+---@return string
+local function format_label(icon_text, icon_fg, label)
+   return wezterm.format({
+      { Foreground = { Color = icon_fg } },
+      { Text = icon_text },
+      'ResetAttributes',
+      { Foreground = { Color = ntb.label_text_fg } },
+      { Attribute = { Intensity = 'Bold' } },
+      { Text = label },
+      'ResetAttributes',
+   })
+end
+
+local icons = {
+   default = ' ' .. nf.md_domain .. ' ',
+   wsl = ' ' .. nf.cod_terminal_linux .. ' ',
+   ssh = ' ' .. nf.md_ssh .. ' ',
+   unix = ' ' .. nf.dev_gnu .. ' ',
+}
 
 local function build_choices()
    local choices = {}
@@ -33,62 +41,31 @@ local function build_choices()
 
    -- Add launch menu items (DefaultDomain)
    for _, v in ipairs(launch_menu) do
-      cells:update_segment_text('label_text', v.label)
-
       table.insert(choices, {
          id = tostring(idx),
-         label = wezterm.format(cells:render({ 'icon_default', 'label_text' })),
+         label = format_label(icons.default, ntb.icon_default_fg, v.label),
       })
-      table.insert(choices_data, {
-         args = v.args,
-         domain = 'DefaultDomain',
-      })
+      table.insert(choices_data, { args = v.args, domain = 'DefaultDomain' })
       idx = idx + 1
    end
 
-   -- Add WSL domains
-   if domains.wsl_domains then
-      for _, v in ipairs(domains.wsl_domains) do
-         cells:update_segment_text('label_text', v.name)
+   -- Add domain entries (WSL, SSH, Unix)
+   local domain_groups = {
+      { list = domains.wsl_domains, icon = icons.wsl, fg = ntb.icon_wsl_fg },
+      { list = domains.ssh_domains, icon = icons.ssh, fg = ntb.icon_ssh_fg },
+      { list = domains.unix_domains, icon = icons.unix, fg = ntb.icon_unix_fg },
+   }
 
-         table.insert(choices, {
-            id = tostring(idx),
-            label = wezterm.format(cells:render({ 'icon_wsl', 'label_text' })),
-         })
-         table.insert(choices_data, {
-            domain = { DomainName = v.name },
-         })
-         idx = idx + 1
-      end
-   end
-
-   -- Add SSH domains
-   if domains.ssh_domains then
-      for _, v in ipairs(domains.ssh_domains) do
-         cells:update_segment_text('label_text', v.name)
-         table.insert(choices, {
-            id = tostring(idx),
-            label = wezterm.format(cells:render({ 'icon_ssh', 'label_text' })),
-         })
-         table.insert(choices_data, {
-            domain = { DomainName = v.name },
-         })
-         idx = idx + 1
-      end
-   end
-
-   -- Add Unix domains
-   if domains.unix_domains then
-      for _, v in ipairs(domains.unix_domains) do
-         cells:update_segment_text('label_text', v.name)
-         table.insert(choices, {
-            id = tostring(idx),
-            label = wezterm.format(cells:render({ 'icon_unix', 'label_text' })),
-         })
-         table.insert(choices_data, {
-            domain = { DomainName = v.name },
-         })
-         idx = idx + 1
+   for _, group in ipairs(domain_groups) do
+      if group.list then
+         for _, v in ipairs(group.list) do
+            table.insert(choices, {
+               id = tostring(idx),
+               label = format_label(group.icon, group.fg, v.name),
+            })
+            table.insert(choices_data, { domain = { DomainName = v.name } })
+            idx = idx + 1
+         end
       end
    end
 
@@ -106,10 +83,12 @@ M.setup = function()
       if default_action and button == 'Right' then
          window:perform_action(
             act.InputSelector({
-               title = 'InputSelector: Launch Menu',
+               title = settings.ui_strings.launch_menu_title,
                choices = choices,
                fuzzy = true,
-               fuzzy_description = nf.md_rocket .. ' Select a lauch item: ',
+               fuzzy_description = nf.md_rocket
+                  .. ' '
+                  .. settings.ui_strings.launch_menu_description,
                action = wezterm.action_callback(function(_window, _pane, id, label)
                   if not id and not label then
                      return

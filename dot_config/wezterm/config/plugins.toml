@@ -1,0 +1,37 @@
+# ── Plugins ──────────────────────────────────────────────────
+
+[plugins]
+agent_deck_enabled = true
+resurrect_enabled = true
+workspace_switcher_enabled = true
+smart_splits_enabled = true
+resurrect_save_interval = 900
+notifications_enabled = true
+tabline_enabled = true
+tabline_theme = "Catppuccin Mocha"
+toggle_terminal_enabled = true
+presentation_enabled = true
+quick_domains_enabled = false
+
+[plugins.agent_deck]
+update_interval = 500
+right_status = false
+notify_on_waiting = true
+
+[plugins.agent_deck.colors]
+working = "#a6e3a1"
+waiting = "#f9e2af"
+idle = "#89b4fa"
+inactive = "#585b70"
+
+[plugins.smart_splits]
+direction_keys = ["h", "j", "k", "l"]
+move_mod = "CTRL"
+resize_mod = "META"
+
+[plugins.notifications]
+ai_toast_debounce_seconds = 30
+ai_process_names = ["kiro", "claude", "copilot"]
+ai_toast_timeout_ms = 4000
+save_toast_timeout_ms = 3000
+error_toast_timeout_ms = 5000

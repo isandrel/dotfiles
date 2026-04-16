@@ -1,0 +1,68 @@
+# ── Status Bar Theme ─────────────────────────────────────────
+
+[status_bar]
+left_bg = "#fab387"
+left_fg = "#1c1b19"
+left_scircle_bg = "rgba(0, 0, 0, 0.4)"
+left_scircle_fg = "#fab387"
+date_fg = "#fab387"
+battery_fg = "#f9e2af"
+separator_fg = "#74c7ec"
+right_bg = "rgba(0, 0, 0, 0.4)"
+show_hostname = false
+
+# ── Tab Title Theme ──────────────────────────────────────────
+
+[tab_title]
+max_title_length = 25
+prompt_fg = "#FFFFFF"
+
+[tab_title.colors]
+text_default_bg = "#45475A"
+text_default_fg = "#1C1B19"
+text_hover_bg = "#5D87A3"
+text_hover_fg = "#1C1B19"
+text_active_bg = "#74c7ec"
+text_active_fg = "#11111B"
+unseen_output_default_fg = "#FFA066"
+unseen_output_hover_fg = "#FFA066"
+unseen_output_active_fg = "#FFA066"
+scircle_default_bg = "rgba(0, 0, 0, 0.4)"
+scircle_default_fg = "#45475A"
+scircle_hover_bg = "rgba(0, 0, 0, 0.4)"
+scircle_hover_fg = "#5D87A3"
+scircle_active_bg = "rgba(0, 0, 0, 0.4)"
+scircle_active_fg = "#74C7EC"
+
+[tab_title.process_icons]
+# Override process name -> nerd font icon mapping
+# Example: nvim = "custom_vim_icon"
+
+# ── New Tab Button Theme ─────────────────────────────────────
+
+[new_tab_button.colors]
+label_text_fg = "#CDD6F4"
+icon_default_fg = "#89B4FA"
+icon_wsl_fg = "#FAB387"
+icon_ssh_fg = "#F38BA8"
+icon_unix_fg = "#CBA6F7"
+
+# ── File Opener ──────────────────────────────────────────────
+
+[file_opener]
+enabled = true
+editor = "open"
+
+# ── UI Strings ───────────────────────────────────────────────
+
+[ui_strings]
+tab_rename_prompt = "Enter new name for tab"
+launch_menu_title = "InputSelector: Launch Menu"
+launch_menu_description = "Select a launch item: "
+bg_selector_title = "InputSelector: Select Background"
+bg_selector_description = "Select Background: "
+ai_layout_palette_label = "Open AI Dev Layout"
+toast_app_name = "WezTerm"
+toast_ai_output = "AI pane has new output"
+toast_workspace_saved = "Workspace saved"
+toast_error_prefix = "WezTerm Error"

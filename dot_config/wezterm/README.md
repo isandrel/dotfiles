@@ -5,77 +5,85 @@ My WezTerm configuration — modular, cross-platform (macOS / Linux / Windows + 
 ## Quick Start
 
 1. Clone or symlink to `~/.config/wezterm/`
-2. Edit **[settings.lua](settings.lua)** to customize — this is the **only file you need to touch**
+2. Edit the TOML files in **[config/](config/)** to customize — these are the **only files you need to touch**
 3. WezTerm auto-reloads on save. Press `F12` to open the Debug Overlay if something goes wrong.
 
-## Customizable Settings
+## Configuration Files
 
-| Setting                | Default                      | Description                     |
-| ---------------------- | ---------------------------- | ------------------------------- |
-| `font_family`          | `'LiterationMono Nerd Font'` | Any installed Nerd Font family  |
-| `font_size`            | `12` (mac) / `9` (other)     | Font size in points             |
-| `max_fps`              | `120`                        | Rendering frame rate            |
-| `animation_fps`        | `60`                         | Cursor blink animation rate     |
-| `scrollback_lines`     | `20000`                      | Lines of scrollback buffer      |
-| `default_shell`        | `nil` (platform default)     | e.g. `{ 'zsh', '-l' }`          |
-| `date_format`          | `'%a %H:%M:%S'`              | Status bar date format          |
-| `backdrop_images_dir`  | `nil` (use `./backdrops/`)   | Custom wallpaper directory      |
-| `backdrop_focus_color` | `nil` (use theme bg)         | Solid color for focus mode      |
-| `wsl_user`             | `'kevin'`                    | WSL username (Windows only)     |
-| `wsl_distro`           | `'Ubuntu'`                   | WSL distribution (Windows only) |
-| `win_user`             | `'kevin'`                    | Windows username (Windows only) |
+All user settings live in `config/*.toml`:
+
+| File                                               | What it controls                                               |
+|----------------------------------------------------|----------------------------------------------------------------|
+| [config/fonts.toml](config/fonts.toml)             | Font family, size, weight, fallback chain                      |
+| [config/appearance.toml](config/appearance.toml)   | Colors, window, cursor, tab bar, backdrop                      |
+| [config/general.toml](config/general.toml)         | Shell, GPU, scrollback, behaviors                              |
+| [config/domains.toml](config/domains.toml)         | SSH, WSL, platform, launch menu                                |
+| [config/keybindings.toml](config/keybindings.toml) | AI layout, scroll amounts, key table timeouts                  |
+| [config/plugins.toml](config/plugins.toml)         | Plugin enable/disable, agent deck, smart splits, notifications |
+| [config/theme.toml](config/theme.toml)             | Status bar, tab title, new tab button, file opener             |
 
 ## Structure
 
 ```
-wezterm.lua          # Entrypoint — wires everything together
-settings.lua         # ← Edit this! Centralized user preferences
-config/
-  init.lua           # Config builder class
-  appearance.lua     # GPU, cursor, tab bar, window settings
-  bindings.lua       # Keybindings (platform-aware)
-  domains.lua        # SSH, WSL, Unix domains
-  fonts.lua          # Font family and size
-  general.lua        # Scrollback, hyperlinks, behaviors
-  launch.lua         # Default shell and launch menu
-events/
-  left-status.lua    # Leader key / key table indicator
-  right-status.lua   # Date + battery status bar
-  tab-title.lua      # Custom tab titles with unseen output
-  new-tab-button.lua # Right-click new tab menu
-utils/
-  backdrops.lua      # Background image manager
-  cells.lua          # Segment-based status bar renderer
-  gpu-adapter.lua    # Cross-platform GPU selection
-  math.lua           # Clamp and round helpers
-  opts-validator.lua # Schema-based option validation
-  platform.lua       # OS detection
-colors/
-  custom.lua         # Catppuccin Mocha color scheme
-backdrops/           # Background images
+wezterm.lua            # Entrypoint — wires everything together
+settings.lua           # Reads config/*.toml, exposes settings table
+config/                # ← Edit these! Pure TOML configuration
+  fonts.toml
+  appearance.toml
+  general.toml
+  domains.toml
+  keybindings.toml
+  plugins.toml
+  theme.toml
+modules/               # Lua modules that apply config to WezTerm
+  ai-layout.lua        # AI dev layout (nvim + kiro + lazygit)
+  appearance.lua       # GPU, cursor, tab bar, window settings
+  bindings.lua         # Keybindings (platform-aware)
+  domains.lua          # SSH, WSL, Unix domains
+  fonts.lua            # Font family, size, and fallback chain
+  general.lua          # Scrollback, hyperlinks, behaviors
+  launch.lua           # Default shell and launch menu
+  plugin-urls.lua      # Plugin GitHub URL registry
+  plugins.lua          # Plugin orchestration and resurrect helpers
+  tabline.lua          # Tabline plugin setup
+events/                # WezTerm event handlers
+  new-tab-button.lua   # Right-click new tab menu
+  open-uri.lua         # Clickable file path opener
+  plugins.lua          # Plugin event handlers and notifications
+  tab-title.lua        # Tab rename, reset, toggle
+utils/                 # Shared utilities
+  backdrops.lua        # Background image manager
+  gpu-adapter.lua      # Cross-platform GPU selection
+  pane.lua             # Pane CWD resolution and path helpers
+  platform.lua         # OS detection
+  table.lua            # Table search helpers
+  url.lua              # URL pattern definitions (3 dialects)
+  window.lua           # Config override helpers
+backdrops/             # Background images
 ```
 
 ## Keybindings
 
 > **Leader key**: `Ctrl+Super+Space`
 
-| Key          | Modifier   | Action            |
-| ------------ | ---------- | ----------------- |
-| `F1`         | —          | Copy Mode         |
-| `F2`         | —          | Command Palette   |
-| `F11`        | —          | Toggle Fullscreen |
-| `F12`        | —          | Debug Overlay     |
-| `t`          | Super      | New Tab           |
-| `w`          | Super      | Close Pane        |
-| `\`          | Super      | Split Vertical    |
-| `\`          | Super+Ctrl | Split Horizontal  |
-| `[` / `]`    | Super      | Prev / Next Tab   |
-| `h/j/k/l`    | Super+Ctrl | Navigate Panes    |
-| `/`          | Super      | Random Background |
-| `,` / `.`    | Super      | Cycle Background  |
-| `b`          | Super      | Toggle Focus Mode |
-| `Leader → f` | —          | Resize Font Mode  |
-| `Leader → p` | —          | Resize Pane Mode  |
+| Key          | Modifier    | Action            |
+|--------------|-------------|-------------------|
+| `F1`         | —           | Copy Mode         |
+| `F2`         | —           | Command Palette   |
+| `F11`        | —           | Toggle Fullscreen |
+| `F12`        | —           | Debug Overlay     |
+| `t`          | Super       | New Tab           |
+| `w`          | Super       | Close Pane        |
+| `\`          | Super       | Split Vertical    |
+| `\`          | Super+Ctrl  | Split Horizontal  |
+| `[` / `]`    | Super       | Prev / Next Tab   |
+| `h/j/k/l`    | Super+Ctrl  | Navigate Panes    |
+| `a`          | Super+Shift | AI Dev Layout     |
+| `/`          | Super       | Random Background |
+| `,` / `.`    | Super       | Cycle Background  |
+| `b`          | Super       | Toggle Focus Mode |
+| `Leader → f` | —           | Resize Font Mode  |
+| `Leader → p` | —           | Resize Pane Mode  |
 
 ## Dependencies
 

@@ -1,0 +1,19 @@
+# ── AI Layout ────────────────────────────────────────────────
+
+[ai_layout]
+ai_command = "kiro-cli chat"
+editor_command = "nvim"
+git_command = "lazygit"
+tab_title_prefix = "AI: "
+editor_ratio = 0.5
+git_pane_ratio = 0.4
+keybinding_key = "a"
+keybinding_mods = "SUPER|SHIFT"
+inactive_brightness = 0.7
+
+# ── Keybindings ──────────────────────────────────────────────
+
+[keybindings]
+scroll_lines = 5
+scroll_page_fraction = 0.75
+key_table_timeout_ms = 1000

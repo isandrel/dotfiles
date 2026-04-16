@@ -1,10 +1,13 @@
 local wezterm = require('wezterm')
-local colors = require('colors.custom')
 local settings = require('settings')
+local pane_utils = require('utils.pane')
+local win_utils = require('utils.window')
 
 -- Seeding random numbers before generating for use
 -- Known issue with lua math library
 -- see: https://stackoverflow.com/questions/20154991/generating-uniform-random-numbers-in-lua
+-- LuaJIT workaround: the first few values after seeding are poorly distributed,
+-- so we discard them. WezTerm uses LuaJIT, so this is still necessary.
 math.randomseed(os.time())
 math.random()
 math.random()
@@ -14,7 +17,7 @@ math.random()
 ---@field current_idx number index of current image
 ---@field images string[] background images
 ---@field images_dir string directory of background images. Default is `wezterm.config_dir .. '/backdrops/'`
----@field focus_color string background color when in focus mode. Default is `colors.custom.background`
+---@field focus_color string background color when in focus mode
 ---@field focus_on boolean focus mode on or off
 local BackDrops = {}
 BackDrops.__index = BackDrops
@@ -27,8 +30,8 @@ function BackDrops:init()
       current_idx = 1,
       images = {},
       images_dir = wezterm.config_dir .. '/backdrops/',
-      focus_color = settings.backdrop.focus_color or colors.background,
-      overlay_color = settings.backdrop.overlay_color or colors.background,
+      focus_color = settings.backdrop.focus_color,
+      overlay_color = settings.backdrop.overlay_color,
       overlay_opacity = settings.backdrop.overlay_opacity,
       image_glob = settings.backdrop.image_glob,
       image_horizontal_align = settings.backdrop.image_horizontal_align,
@@ -76,7 +79,7 @@ function BackDrops:set_images()
 end
 
 ---Override the default `focus_color`
----Default `focus_color` is `colors.custom.background`
+---Default `focus_color` is set in config/appearance.toml
 ---@param focus_color string background color when in focus mode
 function BackDrops:set_focus(focus_color)
    self.focus_color = focus_color
@@ -141,21 +144,7 @@ end
 ---@param window any WezTerm Window see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 ---@param background_opts table background option
 function BackDrops:_set_opt(window, background_opts)
-   window:set_config_overrides({
-      background = background_opts,
-      enable_tab_bar = window:effective_config().enable_tab_bar,
-   })
-end
-
----Override the current window options for background with focus color
----@private
----@param window any WezTerm Window see: https://wezfurlong.org/wezterm/config/lua/window/index.html
-function BackDrops:_set_focus_opt(window)
-   local opts = {
-      background = { self:_overlay_layer(self.focus_color, 1) },
-      enable_tab_bar = window:effective_config().enable_tab_bar,
-   }
-   window:set_config_overrides(opts)
+   win_utils.set_overrides(window, { background = background_opts })
 end
 
 ---Convert the `files` array to a table of `InputSelector` choices
@@ -165,7 +154,7 @@ function BackDrops:choices()
    for idx, file in ipairs(self.images) do
       table.insert(choices, {
          id = tostring(idx),
-         label = file:match('([^/]+)$'),
+         label = pane_utils.basename(file),
       })
    end
    return choices
@@ -186,36 +175,27 @@ function BackDrops:random(window)
    end
 end
 
+---Cycle backgrounds by offset (+1 for forward, -1 for back)
+---@private
+---@param window any WezTerm Window
+---@param offset number +1 or -1
+function BackDrops:_cycle(window, offset)
+   if #self.images > 0 then
+      self.current_idx = (self.current_idx - 1 + offset) % #self.images + 1
+   end
+   self:_set_opt(window, self:_create_opts())
+end
+
 ---Cycle the loaded `files` and select the next background
 ---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:cycle_forward(window)
-   if #self.images == 0 then
-      self:_set_opt(window, self:_create_opts())
-      return
-   end
-
-   if self.current_idx == #self.images then
-      self.current_idx = 1
-   else
-      self.current_idx = self.current_idx + 1
-   end
-   self:_set_opt(window, self:_create_opts())
+   self:_cycle(window, 1)
 end
 
 ---Cycle the loaded `files` and select the previous background
 ---@param window any WezTerm `Window` see: https://wezfurlong.org/wezterm/config/lua/window/index.html
 function BackDrops:cycle_back(window)
-   if #self.images == 0 then
-      self:_set_opt(window, self:_create_opts())
-      return
-   end
-
-   if self.current_idx == 1 then
-      self.current_idx = #self.images
-   else
-      self.current_idx = self.current_idx - 1
-   end
-   self:_set_opt(window, self:_create_opts())
+   self:_cycle(window, -1)
 end
 
 ---Set a specific background from the `files` array

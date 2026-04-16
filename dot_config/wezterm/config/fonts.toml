@@ -1,0 +1,9 @@
+# ── Fonts ─────────────────────────────────────────────────────
+
+[fonts]
+family = "LiterationMono Nerd Font"
+weight = "Medium"
+size = 12.5
+freetype_load_target = "Normal"
+freetype_render_target = "Normal"
+fallback = ["Symbols Nerd Font Mono", "Noto Color Emoji"]
