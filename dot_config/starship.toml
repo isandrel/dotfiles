@@ -1,110 +1,156 @@
+# Starship prompt config — portable across machines
+# Requirements:
+#   - starship >= 1.15 (uses directory.substitutions, truncate_to_repo, command_timeout)
+#   - Any Nerd Font installed in the terminal (e.g. FiraCode Nerd Font, JetBrainsMono Nerd Font)
+#     Install on a new Mac: brew install --cask font-jetbrains-mono-nerd-font
+#   - Install starship: brew install starship
+#   - Activate in ~/.zshrc: eval "$(starship init zsh)"
+# Paths in [directory.substitutions] use ~ which starship expands per-user at runtime.
 "$schema" = "https://starship.rs/config-schema.json"
-format    = "[\ue0b6](#9A348E)$os$username[\ue0b0](bg:#DA627D fg:#9A348E)$directory[\ue0b0](fg:#DA627D bg:#FCA17D)$git_branch$git_status[\ue0b0](fg:#FCA17D bg:#86BBD8)$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$rust$scala[\ue0b0](fg:#86BBD8 bg:#06969A)$docker_context[\ue0b0](fg:#06969A bg:#33658A)$time[\ue0b4 ](fg:#33658A)$line_break$character\n"
+
+format = "[\ue0b6](#9A348E)$os$username[\ue0b0](bg:#DA627D fg:#9A348E)$directory[\ue0b0](fg:#DA627D bg:#FCA17D)$git_branch$git_status[\ue0b0](fg:#FCA17D bg:#86BBD8)$c$elixir$elm$golang$gradle$haskell$java$julia$nodejs$nim$python$package$rust$scala[\ue0b0](fg:#86BBD8 bg:#06969A)$docker_context[\ue0b0](fg:#06969A bg:#33658A)$time[\ue0b4 ](fg:#33658A)$cmd_duration$status$jobs$sudo$line_break$character"
+
+command_timeout = 1000
+add_newline = true
+
+[os]
+style = "bg:#9A348E"
+disabled = true
 
 [username]
 show_always = true
-style_user  = "bg:#9A348E"
-style_root  = "bg:#9A348E"
-format      = "[$user ]($style)"
-disabled    = false
-
-[os]
-style    = "bg:#9A348E"
-disabled = true
+style_user = "bg:#9A348E"
+style_root = "bg:#9A348E"
+format = "[$user ]($style)"
 
 [directory]
-style             = "bg:#DA627D"
-format            = "[ $path ]($style)"
+style = "bg:#DA627D"
+format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = true
+
+[directory.substitutions]
+"~/workplace" = " ws"
+"~/projects" = " proj"
+"~/.config" = " cfg"
+
+[git_branch]
+symbol = "\uf418"
+style = "bg:#FCA17D"
+format = "[ $symbol $branch ]($style)"
+
+[git_status]
+style = "bg:#FCA17D"
+format = "[$all_status$ahead_behind ]($style)"
 
 [c]
 symbol = "\ue61e "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
-
-[docker_context]
-symbol = "\uf308 "
-style  = "bg:#06969A"
-format = "[ $symbol $context ]($style)"
 
 [elixir]
 symbol = "\ue275 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [elm]
 symbol = "\ue62c "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
-
-[git_branch]
-symbol = "\uf418"
-style  = "bg:#FCA17D"
-format = "[ $symbol $branch ]($style)"
-
-[git_status]
-style  = "bg:#FCA17D"
-format = "[$all_status$ahead_behind ]($style)"
 
 [golang]
 symbol = "\ue627 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [gradle]
-style  = "bg:#86BBD8"
+symbol = "\ue660 "
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [haskell]
 symbol = "\ue777 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [java]
 symbol = "\ue256 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [julia]
 symbol = "\ue624 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [nodejs]
 symbol = "\ue718"
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [nim]
 symbol = "\U000f01a5 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
+
+[python]
+symbol = "\ue606 "
+style = "bg:#86BBD8"
+format = '[ $symbol (${version} )($virtualenv )]($style)'
+python_binary = ["python3", "python"]
+
+[package]
+symbol = "\uf487 "
+style = "bg:#86BBD8"
+format = "[ $symbol $version ]($style)"
 
 [rust]
 symbol = "\ue7a8"
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
 [scala]
 symbol = "\ue737 "
-style  = "bg:#86BBD8"
+style = "bg:#86BBD8"
 format = "[ $symbol ($version) ]($style)"
 
-[time]
-disabled    = false
-time_format = "%R"
-style       = "bg:#33658A"
-format      = "[ ♥ $time ]($style)"
+[docker_context]
+symbol = "\uf308 "
+style = "bg:#06969A"
+format = "[ $symbol $context ]($style)"
 
-[line_break]
+[time]
 disabled = false
+time_format = "%R"
+style = "bg:#33658A"
+format = "[ ♥ $time ]($style)"
+
+[cmd_duration]
+min_time = 2000
+format = "[ took $duration ](bold yellow) "
+
+[status]
+disabled = false
+style = "bold red"
+symbol = "✘ "
+format = '[\[$symbol$common_meaning$signal_name$maybe_int\]]($style) '
+
+[jobs]
+symbol = "\uf0e7 "
+style = "bold red"
+format = "[$symbol$number]($style) "
+
+[sudo]
+disabled = false
+style = "bold yellow"
+symbol = "🧙 "
+format = "[as $symbol]($style)"
 
 [character]
-disabled                  = false
-success_symbol            = "[\uf432](bold fg:color_green)"
-error_symbol              = "[\uf432](bold fg:color_red)"
-vimcmd_symbol             = "[\uf434](bold fg:color_green)"
+success_symbol = "[\uf432](bold fg:color_green)"
+error_symbol = "[\uf432](bold fg:color_red)"
+vimcmd_symbol = "[\uf434](bold fg:color_green)"
 vimcmd_replace_one_symbol = "[\uf434](bold fg:color_purple)"
-vimcmd_replace_symbol     = "[\uf434](bold fg:color_purple)"
-vimcmd_visual_symbol      = "[\uf434](bold fg:color_yellow)"
+vimcmd_replace_symbol = "[\uf434](bold fg:color_purple)"
+vimcmd_visual_symbol = "[\uf434](bold fg:color_yellow)"
