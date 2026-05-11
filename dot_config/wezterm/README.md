@@ -13,7 +13,7 @@ My WezTerm configuration — modular, cross-platform (macOS / Linux / Windows + 
 All user settings live in `config/*.toml`:
 
 | File                                               | What it controls                                               |
-|----------------------------------------------------|----------------------------------------------------------------|
+| -------------------------------------------------- | -------------------------------------------------------------- |
 | [config/fonts.toml](config/fonts.toml)             | Font family, size, weight, fallback chain                      |
 | [config/appearance.toml](config/appearance.toml)   | Colors, window, cursor, tab bar, backdrop                      |
 | [config/general.toml](config/general.toml)         | Shell, GPU, scrollback, behaviors                              |
@@ -67,7 +67,7 @@ backdrops/             # Background images
 > **Leader key**: `Ctrl+Super+Space`
 
 | Key          | Modifier    | Action            |
-|--------------|-------------|-------------------|
+| ------------ | ----------- | ----------------- |
 | `F1`         | —           | Copy Mode         |
 | `F2`         | —           | Command Palette   |
 | `F11`        | —           | Toggle Fullscreen |
